@@ -1,7 +1,11 @@
 # Event Calendar
 
 ## Synopsis
-
+This is an application
+To do Stuff
+that will be cool
+And fun
+And awesome
 
 ## Code Example
 
@@ -19,7 +23,7 @@ We are using the following APIs:
 * SoundCloud
 
 ## Tests
-
+This is Me editing Tests
 
 ## Contributors
 
