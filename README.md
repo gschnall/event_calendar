@@ -13,7 +13,10 @@ This is project 3 of our WDI course.
 
 
 ## API Reference
-
+We are using the following APIs:
+* Eventful
+* Yelp
+* SoundCloud
 
 ## Tests
 
