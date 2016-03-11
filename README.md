@@ -24,17 +24,17 @@ Let people know how they can dive into the project, include important links to t
 
 ## Wire Frames
 
-  ### Main Page
-  <img src="./public/images/wireframes/Main.png">
+### Main Page
+![Main Page](./public/images/wireframes/Main.png)
 
-  ### Profile Page
-  <img src="./public/images/wireframes/Profile.png">
+### Profile Page
+![Profile Page](./public/images/wireframes/Profile.png)
 
-  ### Signup Page
-  <img src="./public/images/wireframes/SignUp.png">
+### Signup Page
+![Signup Page](./public/images/wireframes/SignUp.png)
 
-  ### Login Page
-  <img src="./public/images/wireframes/Login.png">
+### Login Page
+![Login Page](./public/images/wireframes/Login.png)
 
 ## Models
 
