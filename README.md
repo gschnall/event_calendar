@@ -10,7 +10,9 @@
 This is project 3 of our WDI course.
 
 ## Installation
-
+* Download the zip file or clone this repo to your local computer.
+* Cd inside the root of the directory and run 'npm install'
+* You will need to get API keys for SoundCloud, Eventful, and Yelp and setup the correct environment variables to make the APIs functional. 
 
 ## API Reference
 We are using the following APIs:
