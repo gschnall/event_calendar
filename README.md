@@ -44,6 +44,7 @@ Let people know how they can dive into the project, include important links to t
 ![Login Page](./public/images/wireframes/Login.png)
 
 ## Models
+![ERD](./public/images/ERD.png)
 
 ## License
 
