@@ -9,7 +9,7 @@ Event Calendar is an app that is targeted towards people looking for events in t
  * User will be able to add an event to their calendar and/or add the event to their favorites
  * User profile page will include a calendar of all events they have added and a favorites board that will show any events that the user has favorited
  * Users will be able to delete, drag and drop (edit), and view events including event details on their calendar
- * User can share an event to their Facebook wall
+ * User can share an event to their Facebook wall  
 [Trello Board](https://trello.com/b/reVEs9vo/les-developpeurs)
 
 ## Motivation
