@@ -1,7 +1,11 @@
 # Event Calendar
 
 ## Synopsis
-
+This is an application
+To do Stuff
+that will be cool
+And fun
+And awesome
 
 ## Code Example
 
@@ -16,7 +20,7 @@ This is project 3 of our WDI course.
 
 
 ## Tests
-
+This is Me editing Tests
 
 ## Contributors
 
