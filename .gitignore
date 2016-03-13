@@ -11,3 +11,6 @@ jspm_packages
 pids
 *.pid
 *.seed
+
+# Enviroment Variables
+.env

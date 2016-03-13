@@ -23,6 +23,7 @@
     "express": "~4.13.4",
     "body-parser": "~1.15.0",
     "mongoose": "~4.4.7",
-    "bcrypt-nodejs": "0.0.3"
+    "bcrypt-nodejs": "0.0.3",
+    "dotenv": "~2.0.0"
   }
 }

@@ -5,7 +5,9 @@ var
   bodyParser = require('body-parser'),
   mongoose = require('mongoose')
 
-  // :: Models ::
+// :: Setup Enviroment Variables ::
+require('dotenv').config();
+// :: Models ::
 var User = require('./models/User.js')
 var Event = require('./models/Event.js')
 
