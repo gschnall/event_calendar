@@ -1,0 +1,38 @@
+<% include ./partials/calendar_header.ejs %>
+
+
+<body>
+
+	<!-- NavBar Partial -->
+	<% include ./partials/navbar.ejs %>
+
+	<div id="wrapper"></div>
+	<div class="container">
+	 <div class="row">
+		 <div class="col-md-2">
+
+		<div id='external-events'>
+			<h4><i style="color:#aca702" class="fa fa-star-o"></i> Favorite Events</h4>
+			<div class='fc-event'>My Event 1</div>
+			<div class='fc-event'>My Event 2</div>
+			<div class='fc-event'>My Event 3</div>
+			<div class='fc-event'>My Event 4</div>
+			<div class='fc-event'>My Event 5</div>
+      <hr>
+			<div id="trash"><i class='fa fa-trash icon-4x'></i></div>
+		</div>
+	</div>
+
+	 <div class="col-md-10">
+		<div id='calendar'></div>
+	 </div>
+
+	</div>
+</div>
+</div>
+
+<!-- BootStrap Modal Partial -->
+<% include ./partials/bootstrap_modal.ejs %>
+
+</body>
+</html>

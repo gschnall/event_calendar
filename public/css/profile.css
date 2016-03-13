@@ -1,0 +1,76 @@
+	body {
+    width: 100%;
+    padding:0;
+		font-size: 14px;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+	}
+
+  #wrapper{
+    width: auto;
+    margin:0 auto;
+    text-align: center;
+    margin-top: 80px;
+  }
+
+	#trash {
+		max-width: 150px;
+		padding: 0 10px;
+		border: 1px solid #ccc;
+		background: #eee;
+    margin: 0 auto;
+    text-align: center;
+    color: #fa2e00;
+    font-weight: bolder;
+    font-size: 32px;
+    background: white;
+    margin-bottom: 6px;
+	}
+
+	#external-events {
+		max-width: 900px;
+    max-height: 300px;
+		padding: 0 10px;
+		border: 1px solid #ccc;
+		background: #eee;
+		text-align: left;
+    margin-right: 30px;
+    margin-bottom: 20px;
+		margin-left: 10.5%;
+    margin:0 auto;
+	}
+
+	#external-events h4 {
+		font-size: 16px;
+		margin-top: 0;
+		padding-top: 1em;
+	}
+
+	#external-events .fc-event {
+		margin: 10px 0;
+		cursor: pointer;
+	}
+
+	#external-events p {
+		margin: 1.5em 0;
+		font-size: 11px;
+		color: #666;
+	}
+
+	#external-events p input {
+		margin: 0;
+		vertical-align: middle;
+	}
+
+	#calendar {
+		max-width: 910px;
+    margin: 0 auto;
+	}
+
+  .fc-day-header{
+    background-color: #ccc;
+    color: black;
+  }
+
+  .fc-day{
+    border-color: black;
+  }

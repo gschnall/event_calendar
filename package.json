@@ -1,0 +1,28 @@
+{
+  "name": "VentCal",
+  "version": "0.0.0",
+  "description": "An app that allows users to search for local events and save them to a calendar in their profile",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gschnall/event_calendar.git"
+  },
+  "keywords": [
+    "events"
+  ],
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/gschnall/event_calendar/issues"
+  },
+  "dependencies": {
+    "ejs": "~2.4.1",
+    "express": "~4.13.4",
+    "body-parser": "~1.15.0",
+    "mongoose": "~4.4.7",
+    "bcrypt-nodejs": "0.0.3"
+  }
+}
