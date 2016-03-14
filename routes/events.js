@@ -7,14 +7,18 @@ var
 // Main Event Route - Find Events
 eventRouter.post('/search', function(req, res){
   var userLocation = req.body.location
-  console.log(userLocation)
+  var userDate = req.body.date
+  userDate += '00'
+  userDate = userDate.replace(/-/g, "")
+  userDate += '-' + userDate
+  console.log(userDate)
   var client = new eventful.Client(process.env.EVENTFUL_KEY)
-  client.searchEvents({location:userLocation, page_size:5}, function(err,data){
+  client.searchEvents({location:userLocation, date:userDate, page_size:5}, function(err,data){
     if(err){
       return console.log(err);
     }
     console.log('Recieved ' + data.search.total_items + ' events');
-    res.json(data.search.events.event[1].title)
+    res.json({title: data.search.events.event[4].title, date:data.search.events.event[4].start_time})
     // console.log(data.search.events.event.length);
   //   for(var i in data.search.events.event){
   //     res.json({event: data.search.events.event[i].title})

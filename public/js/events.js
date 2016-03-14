@@ -6,12 +6,13 @@ $(function(){
       url:'/events/search',
       contentType:'application/json',
       dataType:'json',
-      data:JSON.stringify({location:$('#location').val()})
+      data:JSON.stringify({location:$('#location').val(), date:$('#date').val()})
     })
     .done(function(data){
       console.log(data)
     })
   })
+
 
 ////////END
 })
