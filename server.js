@@ -1,4 +1,4 @@
-var 
+var
   express = require('express'),
   app = express(),
   ejs = require('ejs'),
@@ -9,6 +9,8 @@ var
   session = require('express-session')
   passport = require('passport')
   passportConfig = require('./config/passport.js')
+  eventful = require('eventful-node')
+
 
 // :: Setup Enviroment Variables ::
 require('dotenv').config();
@@ -19,8 +21,8 @@ var Event = require('./models/Event.js')
 // :: Database ::
 
 // Local DB is set to event_cal
-var db = 
-process.env.MONGOLAB_URI || 
+var db =
+process.env.MONGOLAB_URI ||
 "mongodb://localhost/event_cal"
 
 mongoose.connect(db, function(err){
