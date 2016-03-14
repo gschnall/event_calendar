@@ -18,11 +18,12 @@ eventRouter.post('/search', function(req, res){
       return console.log(err);
     }
     console.log('Recieved ' + data.search.total_items + ' events');
-    res.json({title: data.search.events.event[4].title, date:data.search.events.event[4].start_time})
-    // console.log(data.search.events.event.length);
-  //   for(var i in data.search.events.event){
-  //     res.json({event: data.search.events.event[i].title})
-  // }
+    var events = []
+    for(var i in data.search.events.event){
+      var evt = data.search.events.event[i]
+      events.push({image: evt.image.url, title:evt.title, venue: evt.venue_name, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
+  }
+    res.json(events)
   })
 })
 
