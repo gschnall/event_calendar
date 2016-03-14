@@ -43,8 +43,7 @@ $(document).ready(function() {
     eventClick:  function(event, jsEvent, view) { // -MODAL CLICK FUNCTION
       console.log(event)
         $('#modalTitle').html(event.title);
-        //$('#modalBody').html(event.description);
-        $('#modalBody').html(String(event.start[0].d));
+        $('#modalBody').html(event.description);
         $('#eventUrl').attr('href',event.url);
         $('#fullCalModal').modal();
     }

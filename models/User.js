@@ -1,20 +1,27 @@
 var 
   mongoose = require('mongoose'),
-  bcrypt = require('bcrypt-nodejs')
+  bcrypt = require('bcrypt-nodejs'),
   Schema = mongoose.Schema
 
 var userSchema = new Schema({
   local: {
     name: String,
     email: String,
+    city: String,
+    zipcode: String,
     password: String,
-    events:[]
+    genre: String,
+    events:[{type: Schema.Types.ObjectId, ref: "Event"}]
   },
   facebook: {
     id: String,
     name: String,
+    email: String,
+    city: String,
+    zipcode: String,
     token: String,
-    email: String
+    genre: String,
+    events:[{type: Schema.Types.ObjectId, ref: "Event"}]
   }
 })
   

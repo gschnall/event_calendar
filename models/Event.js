@@ -17,7 +17,8 @@ var eventSchema = Schema({
   price: String,
   free: Boolean,
   image: String,
-  users:[]
+  favorite: Boolean,
+  users:[{type: Schema.Types.ObjectId, ref: "User"}]
 })
 
 var Event = mongoose.model('Event', eventSchema)
