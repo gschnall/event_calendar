@@ -62,7 +62,7 @@ app.get('/', function(req, res){
 app.use('/', userRoutes)
 
 // Event Routes
-app.use('/event', eventRoutes)
+app.use('/events', eventRoutes)
 
 // Local Server is on Port 3000
 thePort = process.env.PORT || 3000
