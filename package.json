@@ -19,17 +19,18 @@
     "url": "https://github.com/gschnall/event_calendar/issues"
   },
   "dependencies": {
-    "ejs": "~2.4.1",
-    "express": "~4.13.4",
-    "body-parser": "~1.15.0",
-    "mongoose": "~4.4.7",
     "bcrypt-nodejs": "0.0.3",
-    "dotenv": "~2.0.0",
+    "body-parser": "~1.15.0",
     "connect-flash": "~0.1.1",
-    "passport-local": "~1.0.0",
     "cookie-parser": "~1.4.1",
-    "passport-facebook": "~2.1.0",
+    "dotenv": "~2.0.0",
+    "ejs": "~2.4.1",
+    "eventful-node": "^1.1.1",
+    "express": "~4.13.4",
     "express-session": "~1.13.0",
-    "passport": "~0.3.2"
+    "mongoose": "~4.4.7",
+    "passport": "~0.3.2",
+    "passport-facebook": "~2.1.0",
+    "passport-local": "~1.0.0"
   }
 }
