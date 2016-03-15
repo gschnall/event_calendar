@@ -3,6 +3,14 @@
   margin-top: 10px;
 }
 
+.fa-star:hover {
+  color: #DECC0A;
+}
+
+.fa-calendar:hover {
+  color: red;
+}
+
 
 /*SEARCH CALENDAR STYLING*/
 .ui-datepicker-header {
