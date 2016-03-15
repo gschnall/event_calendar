@@ -12,7 +12,7 @@ $(function(){
         //html to create Event Boxes
         var $divContainer = $('<div class="col-sm-6 col-md-4"></div>')
         var $divThumbnail = $('<div class ="thumbnail"></div>')
-        var $icons = $('<i class="fa fa-star fa-2x pull-right"></i><i class="fa fa-calendar fa-2x pull-right"></i>')
+        var $icons = $('<i class="fa fa-star fa-2x pull-right"></i><i class="fa fa-calendar-plus-o fa-2x pull-right"></i>')
         var $eventTitle = $('<div class="caption"><h2>'+ data.title +'</h2></div>')
         var $startTime = $('<h5>'+ startTime +'</h4>')
         var $endTime = $('<h5>'+ endTime +'</h4>')
@@ -56,7 +56,6 @@ $(function(){
     .done(function(data){
       $('#event-container').html("")
       events.populateEvents(data)
-
     })
   })
 
@@ -67,7 +66,7 @@ $(function(){
     dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   });
 
-// Puts event text from dropdown in event input box 
+// Puts event text from dropdown in event input box
   $('.event-type').on('click', function(evt){
     $('#event-text').html("")
     $('.event-text').val($(evt.target).html())
