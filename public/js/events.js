@@ -14,11 +14,13 @@ $(function(){
         //html to create Event Boxes
         var $divContainer = $('<div class="col-sm-6 col-md-4"></div>')
         var $divThumbnail = $('<div class ="thumbnail"></div>')
-        var $icons = $('<i class="fa fa-star fa-2x pull-right"></i><i class="fa fa-calendar-plus-o fa-2x pull-right"></i>')
+        var $icons = $('<i class="fa fa-calendar-plus-o fa-2x pull-right"></i>')
         var $eventTitle = $('<div class="caption"><h2>'+ data.title +'</h2></div>')
-        var $startTime = $('<h5>'+ startTime +'</h4>')
-        var $endTime = $('<h5>'+ endTime +'</h4>')
-        var $eventDescription = $('<h4>'+data.venue +'</h4><p>'+'<br>'+data.description+'</p>')
+        var $startTime = $('<h5>'+ startTime +'</h5>')
+        var $endTime = $('<h5>'+ endTime +'</h5>')
+        var $address = $('<h5>'+ data.address +'</h5>')
+        var $venue = $('<h4>'+ data.venue +'</h4>')
+        var $eventDescription = $('<h4>'+ data.description + '</h4>')
         // Append html tags to div before populating page
         $divThumbnail.append($icons).append($eventTitle)
         // If image exists append it to the div
@@ -26,24 +28,21 @@ $(function(){
           var $imgSrc = $('<img src='+ data.image + '>')
           $divThumbnail.append($imgSrc)
         }
+        $divThumbnail.append($venue)
+        if(data.address){
+          $divThumbnail.append($address)
+        }
         $divThumbnail.append($startTime)
         if(data.endTime){
           $divThumbnail.append($endTime)
         }
+
         $divThumbnail.append($eventDescription)
         $divContainer.append($divThumbnail)
         //For each event in the array, append it to the event container to populate page with 5 results
         $('#event-container').append($divContainer)
 
       })
-        // Click event for favorite button
-        $('.fa-star').on('click', function(){
-         $(this).toggleClass("favorite")
-       })
-       // Click event for calendar button
-        $('.fa-calendar-plus-o').on('click', function(){
-         $(this).toggleClass("fa-calendar-check-o")
-     })
       }
     }
 
@@ -75,6 +74,8 @@ $(function(){
     $('#event-text').val($(evt.target).html())
   })
 
-
+  $('body').on('click', '.fa-calendar-plus-o', function(){
+      $(this).toggleClass("fa-calendar-check-o")
+    })
 ////////END
 })
