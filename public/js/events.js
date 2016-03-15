@@ -35,11 +35,12 @@ $(function(){
       })
         // Click event for favorite button
         $('.fa-star').on('click', function(){
-         console.log('clicked')
+         $(this).toggleClass("favorite")
+
        })
        // Click event for calendar button
-        $('.fa-calendar').on('click', function(){
-         console.log('clicked')
+        $('.fa-calendar-plus-o').on('click', function(){
+         $(this).toggleClass("fa-calendar-check-o")
      })
       }
     }
@@ -71,6 +72,7 @@ $(function(){
     $('#event-text').html("")
     $('#event-text').val($(evt.target).html())
   })
+
 
 ////////END
 })

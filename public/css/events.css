@@ -11,6 +11,14 @@
   color: red;
 }
 
+.favorite {
+  color: #DECC0A;
+}
+
+.fa-calendar-check-o{
+  color:green;
+}
+
 /*SEARCH CALENDAR STYLING*/
 .ui-datepicker-header {
     background-color: black;
