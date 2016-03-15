@@ -14,6 +14,7 @@ eventRouter.post('/search', function(req, res){
     if(err){
       return console.log(err);
     }
+    console.log(data.search.events.event)
     console.log('Recieved ' + data.search.total_items + ' events');
     var eventArr = []
     for(var i in data.search.events.event){

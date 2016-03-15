@@ -2,29 +2,45 @@
 
 <% include ./partials/navbar.ejs %>
 
-<div class="text-center col-md-8 col-md-offset-2">
+<!-- <div class="text-center col-md-8 col-md-offset-2">
     <h1><span class="fa fa-lock"></span>NodeJS + Passport</h1>
     <h3>Login or Sign Up:</h3>
     <a href="/login" class="btn btn-default">Local Login</a>
     <a href="/signup" class="btn btn-default">Local Signup</a>
     <hr>
-</div>
+</div> -->
+
+
+
+
 
 <div class="container">
   <div class="row">
+<!-- EVENT SEARCH -->
     <div class="col-md-4">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for...">
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Event Type <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Concerts</a></li>
+            <li><a href="#">Sports</a></li>
+            <li><a href="#">Restaurants</a></li>
+            <li><a href="#">Movies</a></li>
+          </ul>
+        </div>
+        <input type="text" class="form-control" aria-label="...">
       </div>
     </div>
+<!-- DATE SEARCH -->
     <div class="col-md-4">
       <div class="input-group">
-        <input type="text" class="form-control datepicker" placeholder="Search for..." id="date">
+        <input type="text" class="form-control datepicker text-center" placeholder="Date" id="date">
       </div>
     </div>
+<!-- LOCATION SEARCH -->
     <div class="col-md-4">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for..." id="location">
+        <input type="text" class="form-control text-center" placeholder="Location" id="location">
         <span class="input-group-btn">
           <button class="btn btn-default" type="button" id="start-search">Go!</button>
         </span>
