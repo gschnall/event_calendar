@@ -51,7 +51,7 @@ $(function(){
       url:'/events/search',
       contentType:'application/json',
       dataType:'json',
-      data:JSON.stringify({location:$('#location').val(), date:$('#date').val()})
+      data:JSON.stringify({location:$('#location').val(), date:$('#date').val(), keyword:$('#event-text').val()})
     })
     .done(function(data){
       $('#event-container').html("")
@@ -69,7 +69,7 @@ $(function(){
 // Puts event text from dropdown in event input box
   $('.event-type').on('click', function(evt){
     $('#event-text').html("")
-    $('.event-text').val($(evt.target).html())
+    $('#event-text').val($(evt.target).html())
   })
 
 ////////END
