@@ -5,7 +5,7 @@ var
   userRouter = express.Router()
   mongoose = require('mongoose')
   User = require('../models/User.js')
-  Event = require('../models/Event.js') 
+  Event = require('../models/Event.js')
 
 // :Post Event to User
 /*
@@ -36,7 +36,7 @@ userRouter.post('/addEvent', isLoggedIn, function(req, res){
       if(err) throw err
       res.json(newUser)
     })
-  }) 
+  })
 })
 
 // :Get User Calendar Events
