@@ -52,10 +52,14 @@
 
 .ui-datepicker-prev {
     float: left;
+    font: normal normal normal 14px 'FontAwesome';
+    color:white;
     background-position: center -30px;
 }
 .ui-datepicker-next {
     float: right;
+    font: normal normal normal 14px 'FontAwesome';
+    color:white;
     background-position: center 0px;
 }
 
