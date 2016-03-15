@@ -7,7 +7,15 @@
   color: #DECC0A;
 }
 
+.fa-star:cog {
+  color: #DECC0A;
+}
+
 .fa-calendar:hover {
+  color: red;
+}
+
+.fa-calendar:cog {
   color: red;
 }
 

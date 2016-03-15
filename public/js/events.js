@@ -33,13 +33,13 @@ $(function(){
         //For each event in the array, append it to the event container to populate page with 5 results
         $('#event-container').append($divContainer)
       })
-      // Click event for favorite button
-      $('.fa-star').on('click', function(){
-       console.log('clicked')
-     })
-     // Click event for calendar button
-      $('.fa-calendar').on('click', function(){
-       console.log('clicked')
+        // Click event for favorite button
+        $('.fa-star').on('click', function(){
+         console.log('clicked')
+       })
+       // Click event for calendar button
+        $('.fa-calendar').on('click', function(){
+         console.log('clicked')
      })
       }
     }
@@ -60,14 +60,18 @@ $(function(){
     })
   })
 
-
-
 // Logic for search calendar
   $("#date").datepicker({
     inline: true,
     showOtherMonths: true,
     dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   });
+
+// Puts event text from dropdown in event input box 
+  $('.event-type').on('click', function(evt){
+    $('#event-text').html("")
+    $('.event-text').val($(evt.target).html())
+  })
 
 ////////END
 })
