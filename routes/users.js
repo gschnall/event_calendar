@@ -3,6 +3,36 @@ var
   express = require('express')
   passport = require('passport')
   userRouter = express.Router()
+  mongoose = require('mongoose')
+  User = require('../models/User.js')
+  Event = require('../models/Event.js') 
+
+
+// :Post Event to User
+userRouter.route('/addEvent/:id')
+  .post(function(req, res){
+    User.findOne({_id: req.params.id}, function(err, user){
+      if(err) throw err
+      var event = new Event(req.body)
+      event.save()
+      // Push event to users event array
+      user.local.events.push(event)
+      user.save(function(err, newUser){
+        if(err) throw err
+        res.json(newUser)
+      })
+    })
+  })
+
+// :Get User Calendar Events
+userRouter.get('/calendar/events', isLoggedIn, function(req, res){
+  User.findOne({_id: req.user._id})
+    .populate("local.events")
+    .exec(function(err, user){
+      console.log(user.local.events[0].start)
+      res.json({userName: user.local.name, userEvents: user.local.events})
+    })
+})
 
 // :Login
 userRouter.route('/login')
@@ -24,7 +54,7 @@ userRouter.route('/signup')
   }))
 // :Profile
 userRouter.get('/profile', isLoggedIn, function(req, res){
-  res.render('profile', {user: req.user})
+  res.render('profile', {userName: req.user.local.name})
 })
 // :Logout
 userRouter.get('/logout', function(req, res){

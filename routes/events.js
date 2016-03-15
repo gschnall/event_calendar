@@ -15,6 +15,3 @@ eventRouter.get('/:id', function(req, res){
 })
 
 module.exports = eventRouter
-
-
-

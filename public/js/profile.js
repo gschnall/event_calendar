@@ -1,4 +1,47 @@
 $(document).ready(function() {
+  var profile = {
+   userEvents: [], 
+   init: function(){
+     $.ajax({
+       url: '/calendar/events',
+       method: 'GET'
+     })
+      .done(function(data){
+        console.log(data.userEvents.start)
+        profile.setupCal(data.userEvents)
+      })
+   }, 
+   setupCal: function(events){
+     console.log(events)
+      $('#calendar').fullCalendar({
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+        },
+        editable: true,
+        events: events,
+        droppable: true, // this allows things to be dropped onto the calendar
+        drop: function(target, thing) {
+          // is the "remove after drop" checkbox checked?
+          if ($('#drop-remove').is(':checked')) {
+            // if so, remove the element from the "Draggable Events" list
+            $(this).remove();
+          }
+        },
+        eventClick:  function(event, jsEvent, view) { // -MODAL CLICK FUNCTION
+          console.log(event)
+            $('#modalTitle').html(event.title);
+            $('#modalBody').html(event.description);
+            $('#eventUrl').attr('href',event.url);
+            $('#fullCalModal').modal();
+        }
+      });
+    }
+//End Profile obj
+  }
+  //Initialize Profile Calendar
+  profile.init()
 
 
 	/* initialize the external events
@@ -25,28 +68,5 @@ $(document).ready(function() {
 	/* initialize the calendar
 	-----------------------------------------------------------------*/
 
-	$('#calendar').fullCalendar({
-		header: {
-			left: 'prev,next today',
-			center: 'title',
-			right: 'month,agendaWeek,agendaDay'
-		},
-		editable: true,
-		droppable: true, // this allows things to be dropped onto the calendar
-		drop: function(target, thing) {
-			// is the "remove after drop" checkbox checked?
-			if ($('#drop-remove').is(':checked')) {
-				// if so, remove the element from the "Draggable Events" list
-				$(this).remove();
-			}
-		},
-    eventClick:  function(event, jsEvent, view) { // -MODAL CLICK FUNCTION
-      console.log(event)
-        $('#modalTitle').html(event.title);
-        $('#modalBody').html(event.description);
-        $('#eventUrl').attr('href',event.url);
-        $('#fullCalModal').modal();
-    }
-	});
 
 });

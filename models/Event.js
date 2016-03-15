@@ -1,13 +1,12 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
-
 var eventSchema = Schema({
   title: String,
   description: String,
   date: String,
-  start_time: String,
-  end_time: String,
+  start: String,
+  end: String,
   venu_type: String,
   address: String,
   city: String,
