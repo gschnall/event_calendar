@@ -12,12 +12,13 @@ $(function(){
         //html to create Event Boxes
         var $divContainer = $('<div class="col-sm-6 col-md-4"></div>')
         var $divThumbnail = $('<div class ="thumbnail"></div>')
+        var $icons = $('<i class="fa fa-star fa-2x pull-right"></i><i class="fa fa-calendar fa-2x pull-right"></i>')
         var $eventTitle = $('<div class="caption"><h2>'+ data.title +'</h2></div>')
         var $startTime = $('<h5>'+ startTime +'</h4>')
         var $endTime = $('<h5>'+ endTime +'</h4>')
         var $eventDescription = $('<h4>'+data.venue +'</h4><p>'+'<br>'+data.description+'</p>')
         // Append html tags to div before populating page
-        $divThumbnail.append($eventTitle)
+        $divThumbnail.append($icons).append($eventTitle)
         // If image exists append it to the div
         if(data.image){
           var $imgSrc = $('<img src='+ data.image + '>')
@@ -31,12 +32,20 @@ $(function(){
         $divContainer.append($divThumbnail)
         //For each event in the array, append it to the event container to populate page with 5 results
         $('#event-container').append($divContainer)
-      })//for each end
+      })
+      // Click event for favorite button
+      $('.fa-star').on('click', function(){
+       console.log('clicked')
+     })
+     // Click event for calendar button
+      $('.fa-calendar').on('click', function(){
+       console.log('clicked')
+     })
       }
     }
 
-
-  $('#start-search').on('click', function(evt){
+// Click event for Search Events button -- populates page with three results
+  $('#start-search').on('click', function(){
     $.ajax({
       method:'POST',
       url:'/events/search',
@@ -51,11 +60,13 @@ $(function(){
     })
   })
 
+
+
 // Logic for search calendar
   $("#date").datepicker({
     inline: true,
-            showOtherMonths: true,
-            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    showOtherMonths: true,
+    dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   });
 
 ////////END
