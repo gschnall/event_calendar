@@ -25,7 +25,7 @@
     "cookie-parser": "~1.4.1",
     "dotenv": "~2.0.0",
     "ejs": "~2.4.1",
-    "eventful-node": "^1.1.1",
+    "eventful-node": "~1.1.1",
     "express": "~4.13.4",
     "express-session": "~1.13.0",
     "mongoose": "~4.4.7",

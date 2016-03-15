@@ -21,9 +21,8 @@ var Event = require('./models/Event.js')
 // :: Database ::
 
 // Local DB is set to event_cal
-var db =
-process.env.MONGOLAB_URI ||
-"mongodb://localhost/event_cal"
+var db = "mongodb://localhost/event_cal"
+//process.env.MONGOLAB_URI ||
 
 mongoose.connect(db, function(err){
   if(err) return console.log("!!COULD NOT CONNECT TO DATABASE: " + db)

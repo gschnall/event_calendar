@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
   var profile = {
    userEvents: [], 
    init: function(){
@@ -7,7 +8,7 @@ $(document).ready(function() {
        method: 'GET'
      })
       .done(function(data){
-        console.log(data.userEvents.start)
+        console.log(data.userEvents)
         profile.setupCal(data.userEvents)
       })
    }, 
@@ -46,7 +47,6 @@ $(document).ready(function() {
 
 	/* initialize the external events
 	-----------------------------------------------------------------*/
-
 	$('#external-events .fc-event').each(function() {
 
 		// store data so the calendar knows to render an event upon drop
