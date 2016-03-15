@@ -84,6 +84,9 @@ $(function(){
     var start = ($(this).parent().children('.start-time').text())
     var end = ($(this).parent().children('.end-time').text())
     var title = ($(this).parent().children('.caption').text())
+    var startArr = moment(start.replace('th', '').replace('st','').replace('rd', '').replace('nd', '')).format().split('-')
+    var formatStart = startArr[0] + '-' + startArr[1] + '-' + startArr[2]
+
       $.ajax({
         method:"POST",
         url:"/addEvent",
@@ -104,7 +107,9 @@ $(function(){
           console.log(data)
         })
         .fail(function(){
-          window.location.replace('/signup');
+          console.log(start)
+          console.log(formatStart)
+          // window.location.replace('/signup');
         })
 
     })
