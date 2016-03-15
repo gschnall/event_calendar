@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   var profile = {
-   userEvents: [], 
+   userEvents: [],
    init: function(){
      $.ajax({
        url: '/calendar/events',
@@ -11,7 +11,7 @@ $(document).ready(function() {
         console.log(data.userEvents)
         profile.setupCal(data.userEvents)
       })
-   }, 
+   },
    setupCal: function(events){
      console.log(events)
       $('#calendar').fullCalendar({
@@ -32,8 +32,9 @@ $(document).ready(function() {
         },
         eventClick:  function(event, jsEvent, view) { // -MODAL CLICK FUNCTION
           console.log(event)
+          console.log(event._id)
             $('#modalTitle').html(event.title);
-            $('#modalBody').html(event.description);
+            $('#modalBody').html(event.address);
             $('#eventUrl').attr('href',event.url);
             $('#fullCalModal').modal();
         }
