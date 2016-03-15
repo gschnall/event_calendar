@@ -8,22 +8,19 @@ var
 eventRouter.post('/search', function(req, res){
   var userLocation = req.body.location
   var userDate = req.body.date
-  userDate += '00'
-  userDate = userDate.replace(/-/g, "")
-  userDate += '-' + userDate
   console.log(userDate)
   var client = new eventful.Client(process.env.EVENTFUL_KEY)
-  client.searchEvents({location:userLocation, date:userDate, page_size:5}, function(err,data){
+  client.searchEvents({location:userLocation, date:userDate, page_size:3}, function(err,data){
     if(err){
       return console.log(err);
     }
     console.log('Recieved ' + data.search.total_items + ' events');
-    var events = []
+    var eventArr = []
     for(var i in data.search.events.event){
       var evt = data.search.events.event[i]
-      events.push({image: evt.image.url, title:evt.title, venue: evt.venue_name, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
+      eventArr.push({image: evt.image.url, title:evt.title, venue: evt.venue_name, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
   }
-    res.json(events)
+    res.json(eventArr)
   })
 })
 
