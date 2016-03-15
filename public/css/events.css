@@ -3,6 +3,21 @@
   margin-top: 10px;
 }
 
+.fa-star:hover {
+  color: #DECC0A;
+}
+
+.fa-calendar-plus-o:hover {
+  color: red;
+}
+
+.favorite {
+  color: #DECC0A;
+}
+
+.fa-calendar-check-o{
+  color:green;
+}
 
 /*SEARCH CALENDAR STYLING*/
 .ui-datepicker-header {
@@ -37,10 +52,14 @@
 
 .ui-datepicker-prev {
     float: left;
+    font: normal normal normal 14px 'FontAwesome';
+    color:white;
     background-position: center -30px;
 }
 .ui-datepicker-next {
     float: right;
+    font: normal normal normal 14px 'FontAwesome';
+    color:white;
     background-position: center 0px;
 }
 

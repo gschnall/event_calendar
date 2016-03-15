@@ -8,9 +8,10 @@ var
 eventRouter.post('/search', function(req, res){
   var userLocation = req.body.location
   var userDate = req.body.date
-  console.log(userDate)
+  var userKeyword = req.body.keyword
+  console.log(userKeyword)
   var client = new eventful.Client(process.env.EVENTFUL_KEY)
-  client.searchEvents({location:userLocation, date:userDate, page_size:3}, function(err,data){
+  client.searchEvents({location:userLocation , date:userDate, page_size:3, keywords:userKeyword}, function(err,data){
     if(err){
       return console.log(err);
     }
