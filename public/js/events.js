@@ -16,11 +16,11 @@ $(function(){
         var $divThumbnail = $('<div class ="thumbnail"></div>')
         var $icons = $('<i class="fa fa-calendar-plus-o fa-2x pull-right"></i>')
         var $eventTitle = $('<div class="caption"><h2>'+ data.title +'</h2></div>')
-        var $startTime = $('<h5>'+ startTime +'</h5>')
-        var $endTime = $('<h5>'+ endTime +'</h5>')
-        var $address = $('<h5>'+ data.address +'</h5>')
-        var $venue = $('<h4>'+ data.venue +'</h4>')
-        var $eventDescription = $('<h4>'+ data.description + '</h4>')
+        var $startTime = $('<h5 class="start-time">'+ startTime +'</h5>')
+        var $endTime = $('<h5 class="end-time">'+ endTime +'</h5>')
+        var $address = $('<h5 class="address">'+ data.address +'</h5>')
+        var $venue = $('<h4 class="venue">'+ data.venue +'</h4>')
+        var $eventDescription = $('<h4 class="description">'+ data.description + '</h4>')
         // Append html tags to div before populating page
         $divThumbnail.append($icons).append($eventTitle)
         // If image exists append it to the div
@@ -74,8 +74,44 @@ $(function(){
     $('#event-text').val($(evt.target).html())
   })
 
+// Adds event to user's calendar on click
   $('body').on('click', '.fa-calendar-plus-o', function(){
-      $(this).toggleClass("fa-calendar-check-o")
+    console.log('clicked')
+    var $calendarChecked = $(this)
+    var description = ($(this).parent().children('.description').text())
+    var venue = ($(this).parent().children('.venue').text())
+    var address = ($(this).parent().children('.address').text())
+    var start = ($(this).parent().children('.start-time').text())
+    var end = ($(this).parent().children('.end-time').text())
+    var title = ($(this).parent().children('.caption').text())
+    var startArr = moment(start.replace('th', '').replace('st','').replace('rd', '').replace('nd', '')).format().split('-')
+    var formatStart = startArr[0] + '-' + startArr[1] + '-' + startArr[2]
+
+      $.ajax({
+        method:"POST",
+        url:"/addEvent",
+        contentType:"application/json",
+        dataType:"json",
+        data:JSON.stringify(
+          {
+            description:description,
+            venu_type:venue,
+            address:address,
+            start:start,
+            end:end,
+            title:title
+          })
+        })
+        .done(function(data){
+          $calendarChecked.toggleClass("fa-calendar-check-o")
+          console.log(data)
+        })
+        .fail(function(){
+          console.log(start)
+          console.log(formatStart)
+          // window.location.replace('/signup');
+        })
+
     })
 ////////END
 })
