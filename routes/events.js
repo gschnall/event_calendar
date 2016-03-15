@@ -14,12 +14,15 @@ eventRouter.post('/search', function(req, res){
     if(err){
       return console.log(err);
     }
-    console.log(data.search)
+
     console.log('Recieved ' + data.search.total_items + ' events');
     var eventArr = []
     for(var i in data.search.events.event){
       var evt = data.search.events.event[i]
-      eventArr.push({image: evt.image.url, title:evt.title, venue: evt.venue_name, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
+      if(evt.image){
+        eventArr.push({image: evt.image.medium.url,title:evt.title, venue: evt.venue_name, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
+      }
+      eventArr.push({title:evt.title, venue: evt.venue_name, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
   }
     res.json(query.shuffleArr(eventArr))
   })
