@@ -19,6 +19,11 @@
   color:green;
 }
 
+.thumbnail{
+  height: 400px;
+  overflow: scroll;
+}
+
 /*SEARCH CALENDAR STYLING*/
 .ui-datepicker-header {
     background-color: black;

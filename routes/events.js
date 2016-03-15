@@ -26,7 +26,7 @@ eventRouter.post('/search', function(req, res){
 })
 
 var query = {
-//Shuffles Array of Events 
+//Shuffles Array of Events
   shuffleArr: function (array) {
    var m = array.length, t, i;
    while (m) {

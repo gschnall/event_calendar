@@ -18,7 +18,7 @@ $(function(){
         var $eventTitle = $('<div class="caption"><h2>'+ data.title +'</h2></div>')
         var $startTime = $('<h5>'+ startTime +'</h4>')
         var $endTime = $('<h5>'+ endTime +'</h4>')
-        var $eventDescription = $('<h4>'+data.venue +'</h4><p>'+'<br>'+data.description+'</p>')
+        var $eventDescription = $('<h4">'+data.venue +'</h4><p>'+'<br>'+data.description+'</p>')
         // Append html tags to div before populating page
         $divThumbnail.append($icons).append($eventTitle)
         // If image exists append it to the div
