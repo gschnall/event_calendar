@@ -3,7 +3,9 @@ $(function(){
   var events = {
     populateEvents: function(data){
       console.log(data)
-      data.forEach(function(el){
+      data.forEach(function(el, index){
+        //Only returns 3 results
+        if(index>2){return}
         var data = el
         console.log(data)
         //Format Dates and Times of the events
@@ -32,11 +34,11 @@ $(function(){
         $divContainer.append($divThumbnail)
         //For each event in the array, append it to the event container to populate page with 5 results
         $('#event-container').append($divContainer)
+
       })
         // Click event for favorite button
         $('.fa-star').on('click', function(){
          $(this).toggleClass("favorite")
-
        })
        // Click event for calendar button
         $('.fa-calendar-plus-o').on('click', function(){
