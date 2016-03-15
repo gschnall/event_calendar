@@ -22,7 +22,7 @@ eventRouter.post('/search', function(req, res){
       if(evt.image){
         eventArr.push({image: evt.image.medium.url,title:evt.title, venue: evt.venue_name, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
       }
-      eventArr.push({title:evt.title, venue: evt.venue_name, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
+      eventArr.push({title:evt.title, venue: evt.venue_name, address: evt.venue_address, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
   }
     res.json(query.shuffleArr(eventArr))
   })
