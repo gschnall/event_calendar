@@ -42,7 +42,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 // Passport and Sessions
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  cookie: {_expires: 1000000}
+  cookie: {_expires: 6000000}
 }))
 app.use(passport.initialize())
 app.use(passport.session())
