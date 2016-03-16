@@ -55,10 +55,13 @@ eventRouter.post('/search', function(req, res){
       var seatgeekUrl= "https://api.seatgeek.com/2/events?venue.city="+ userLocation + "&taxonomies.name=concert&datetime_utc.gt=" + finalDate + ""
       request({url: seatgeekUrl, json: true}, function(error, response, body){
         var events = body.events
+
         var seatArr = []
         for(i=0;i<events.length;i++){
+
           var evtSeat = events[i]
-            seatArr.push({image:"", venue: evtSeat.venue.name, title: evtSeat.title, address: evtSeat.venue.address + ' ' + evtSeat.venue.city + ', ' + evtSeat.venue.state + ' ' + evtSeat.venue.postal_code, startTime:evtSeat.datetime_local, description: "", tickets:evtSeat.url})
+          console.log(evtSeat.performers[0].short_name)
+            seatArr.push({image:"", venue: evtSeat.venue.name, title: evtSeat.title, address: evtSeat.venue.address + ' ' + evtSeat.venue.city + ', ' + evtSeat.venue.state + ' ' + evtSeat.venue.postal_code, startTime:evtSeat.datetime_local, description: "", tickets:evtSeat.url, performer:evtSeat.performers[0].short_name })
             ///SOUNDCLOUD API REQUEST
             // console.log(evtSeat.performers[0].name)
             }
