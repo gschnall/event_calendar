@@ -36,7 +36,7 @@ $(document).ready(function() {
         },
         eventBorderColor: "black",
         editable: true,
-        dragRevertDuration: 1200,
+        dragRevertDuration: 0,
         events: events,
         eventResize: function(event, delta){
           //alert(event.start.format())
@@ -61,9 +61,7 @@ $(document).ready(function() {
           if (jsEvent.pageX >= x1 && jsEvent.pageX<= x2 &&
             jsEvent.pageY>= y1 && jsEvent.pageY <= y2) {
               explode_audio.play()
-              $(this).css('background-color', 'red')
               console.log("Trashed!")
-              $(this).toggle('explode')
               $('#calendar').fullCalendar('removeEvents', event._id);
               $.ajax({
                  url: '/calendar/events',
