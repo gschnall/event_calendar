@@ -54,7 +54,7 @@ var eventRoutes = require('./routes/events.js')
 
 // TEMPORARY HOME ROUTE
 app.get('/', function(req, res){
-  res.render('index')
+  res.render('index', {user: req.user})
 })
 
 // User Routes

@@ -4,7 +4,9 @@ var
   eventRouter = express.Router(),
   eventful = require('eventful-node'),
   yelp = require('../config/yelp.js'),
-  moment = require('../public/js/lib/moment.min.js')
+  moment = require('../public/js/lib/moment.min.js'),
+  seatgeek = require('../config/seatgeek.js'),
+  request = require('request')
 
 // Main Event Route - Find Events
 eventRouter.post('/search', function(req, res){
@@ -13,6 +15,15 @@ eventRouter.post('/search', function(req, res){
   var userKeyword = req.body.keyword.toLowerCase()
   var client = new eventful.Client(process.env.EVENTFUL_KEY)
   console.log(userDate)
+
+  // var seatgeekUrl= "https://api.stubhub.com/search/catalog/events/v2"
+  // // https://api.seatgeek.com/2/venues
+  // //
+	// request({url: seatgeekUrl, json: true}, function(error, response, body){
+  //   console.log(body)
+	// 	res.send(body)
+	// })
+
 /*<---------------Logic for Search(Yelp vs. Eventful)------------------------->*/
   if(userKeyword === 'restaurant' || userKeyword === 'restaurants' || userKeyword ==='bar' || userKeyword ==='bars' || userKeyword ==='drink' || userKeyword ==='drinks' || userKeyword ==='food'){
     ////////////YELP API SEARCH////////////////////////////////////

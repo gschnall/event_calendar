@@ -1,18 +1,11 @@
 <% include ./partials/events_header.ejs %>
+<% include ./partials/navbar.ejs%>
 
-<% include ./partials/navbar.ejs %>
-
-<!-- <div class="text-center col-md-8 col-md-offset-2">
-    <h1><span class="fa fa-lock"></span>NodeJS + Passport</h1>
-    <h3>Login or Sign Up:</h3>
-    <a href="/login" class="btn btn-default">Local Login</a>
-    <a href="/signup" class="btn btn-default">Local Signup</a>
-    <hr>
-</div> -->
-
-
-
-
+<% if(user) {%>
+  <% include ./partials/navbarUser.ejs%>
+<% }else{ %>
+  <% include ./partials/navbar.ejs%>
+  <% }%>
 
 <div class="container">
   <div class="row">
@@ -56,15 +49,5 @@
 <div class="container">
   <div class="row" id="event-container">
 
-    <!-- <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <img src="" alt="">
-        <div class="caption">
-          <h3>Thumbnail label</h3>
-          <p>...</p>
-          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-        </div>
-      </div>
-    </div> -->
   </div>
 </div>
