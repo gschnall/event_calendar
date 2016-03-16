@@ -2,12 +2,10 @@ $(function(){
 
   var events = {
     populateEvents: function(data){
-      console.log(data)
       data.forEach(function(el, index){
         //Only returns 3 results
         if(index>2){return}
         var data = el
-        console.log(data)
         //Format Dates and Times of the events
         var startTime = moment(data.startTime).format('MMMM Do YYYY, h:mm a')
         var endTime = moment(data.endTime).format('MMMM Do YYYY, h:mm a')
@@ -22,6 +20,7 @@ $(function(){
         var $venue = $('<h4 class="venue">'+ data.venue +'</h4>')
         var $eventDescription = $('<h4 class="description">'+ data.description + '</h4>')
         var $tickets = $('<a href=' + data.tickets + ' <i class="fa fa-ticket fa-4x"></i></a><br><h4>Buy Tickets</h4>')
+        var $soundPlayer = $('<iframe id="'+ data.performer  +  ' "class="players" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/76067623&amp;auto_play=false&amp;hide_related=true&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
 
         // Append html tags to div before populating page
         $divThumbnail.append($icons).append($eventTitle)
@@ -38,15 +37,18 @@ $(function(){
         if(data.endTime){
           $divThumbnail.append($endTime)
         }
+
         if(data.tickets){
           $divThumbnail.append($tickets)
+          // soundcloud player
+          $divThumbnail.append($soundPlayer)
         }
 
         $divThumbnail.append($eventDescription)
         $divContainer.append($divThumbnail)
         //For each event in the array, append it to the event container to populate page with 5 results
         $('#event-container').append($divContainer)
-
+        // soundCloud.playTune(data.performer)
       })
       }
     }
@@ -63,6 +65,10 @@ $(function(){
     .done(function(data){
       $('#event-container').html("")
       events.populateEvents(data)
+      $('iframe').each(function(e){
+          var artist = $(this).attr('id')
+          soundCloud.playTune(artist,e)
+      })
     })
   })
 

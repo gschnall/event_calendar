@@ -9,7 +9,8 @@ var
   session = require('express-session')
   passport = require('passport')
   passportConfig = require('./config/passport.js')
-  eventful = require('eventful-node')
+  eventful = require('eventful-node'),
+  SC= require('node-soundcloud')
 
 
 // :: Setup Enviroment Variables ::
