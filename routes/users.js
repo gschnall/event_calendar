@@ -63,6 +63,17 @@ userRouter.delete('/calendar/events', isLoggedIn, function(req, res){
   res.json({success:true})
 })
 
+userRouter.patch('/calendar/events', isLoggedIn, function(req, res){
+  /*
+  User.findOne({_id: req.user._id}, function(err, user){
+    if(err) throw err
+    var toUpdate = user.local.events.indexOf(req.body.eventId)
+    user.local.events[toUpdate].start
+  })
+  */
+  res.json(req.body)
+})
+
 // :Login
 userRouter.route('/login')
   .get(function(req, res){

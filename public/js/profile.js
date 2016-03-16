@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
-  var profile = {
-   userEvents: [], 
+ var profile = {
    init: function(){
      $.ajax({
        url: '/calendar/events',
@@ -12,6 +11,20 @@ $(document).ready(function() {
         profile.setupCal(data.userEvents)
       })
    }, 
+   patchEventTime: function(event, delta){
+    var endTime = false
+    if(event.end){ endTime = event.end.format() }
+    $.ajax({
+       url: '/calendar/events',
+       type: 'PATCH',
+       dataType: 'json',
+       contentType: 'application/json',
+       data: JSON.stringify({eventId: event._id, eventStart: event.start.format(), eventStop: endTime})
+     })
+      .done(function(data){
+        console.log(data)
+      })
+   },
    setupCal: function(events){
       $('#calendar').fullCalendar({
         header: {
@@ -22,6 +35,14 @@ $(document).ready(function() {
         editable: true,
         dragRevertDuration: 1200,
         events: events,
+        eventResize: function(event, delta){
+          alert(event.start.format())
+          profile.patchEventTime(event, delta)
+        },
+        eventDrop: function(event, delta){
+          alert(event.title + " was dropped on " + event.start.format())
+          profile.patchEventTime(event, delta)
+        },
         eventDragStart: function( event, jsEvent){
           $('#trash').css('background-color', "gold")
         },
@@ -32,9 +53,12 @@ $(document).ready(function() {
           var x2 = ofs.left + trashEl.outerWidth(true);
           var y1 = ofs.top;
           var y2 = ofs.top + trashEl.outerHeight(true);
+          var explode_audio = new Audio("../public/images/explosion.mp3")
           $('#trash').css('background-color', "white")
           if (jsEvent.pageX >= x1 && jsEvent.pageX<= x2 &&
             jsEvent.pageY>= y1 && jsEvent.pageY <= y2) {
+              explode_audio.play()
+              $(this).css('background-color', 'red')
               console.log("Trashed!")
               $(this).toggle('explode')
               $('#calendar').fullCalendar('removeEvents', event._id);
