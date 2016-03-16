@@ -13,8 +13,8 @@ eventRouter.post('/search', function(req, res){
   var userKeyword = req.body.keyword.toLowerCase()
   var client = new eventful.Client(process.env.EVENTFUL_KEY)
   console.log(userDate)
-
-  if(userKeyword === 'restaurant' || userKeyword ==='bar' || userKeyword ==='drink' || userKeyword ==='food'){
+/*<---------------Logic for Search(Yelp vs. Eventful)------------------------->*/
+  if(userKeyword === 'restaurant' || userKeyword === 'restaurants' || userKeyword ==='bar' || userKeyword ==='bars' || userKeyword ==='drink' || userKeyword ==='drinks' || userKeyword ==='food'){
     ////////////YELP API SEARCH////////////////////////////////////
     yelp.search({ term: userKeyword, location: userLocation, limit:9})
     .then(function (data) {
@@ -23,8 +23,7 @@ eventRouter.post('/search', function(req, res){
         console.log(data.businesses[i].name)
         console.log(userDate)
         var evtYelp = data.businesses[i]
-
-          yelpArr.push({image: evtYelp.image_url, venue: evtYelp.rating, title: evtYelp.name, address: evtYelp.location.display_address, description:evtYelp.snippet_text})
+        yelpArr.push({image: evtYelp.image_url, venue: evtYelp.rating, title: evtYelp.name, address: evtYelp.location.display_address, description:evtYelp.snippet_text})
       }
       res.json(query.shuffleArr(yelpArr))
     })
