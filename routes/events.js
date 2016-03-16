@@ -15,10 +15,7 @@ eventRouter.post('/search', function(req, res){
   var userKeyword = req.body.keyword.toLowerCase()
   var client = new eventful.Client(process.env.EVENTFUL_KEY)
 
-
-
-
-/*<---------------Logic for Search(Yelp vs. Eventful)------------------------->*/
+/*<---------------Logic for Search(Yelp vs. SeatGeek vs. Eventful )---------------------->*/
   if(userKeyword === 'restaurant' || userKeyword === 'restaurants' || userKeyword ==='bar' || userKeyword ==='bars' || userKeyword ==='drink' || userKeyword ==='drinks' || userKeyword ==='food'){
   //////////////YELP API SEARCH////////////////////////////////////
     yelp.search({ term: userKeyword, location: userLocation, limit:9})
@@ -36,26 +33,38 @@ eventRouter.post('/search', function(req, res){
       console.error(err);
     });
   } else if(userKeyword === 'sports' || userKeyword === 'sport') {
-    var newDate = userDate.split("/")
-    var finalDate = newDate[2] + "-" + newDate[0] + "-" + newDate[1]
-    console.log(finalDate)
-
+      var newDate = userDate.split("/")
+      var finalDate = newDate[2] + "-" + newDate[0] + "-" + newDate[1]
   //////////////////////SEATGEEK API////////////////////////////////
       var seatgeekUrl= "https://api.seatgeek.com/2/events?venue.city="+ userLocation + "&taxonomies.name=sports&datetime_utc.gt=" + finalDate + ""
       request({url: seatgeekUrl, json: true}, function(error, response, body){
-        console.log(body)
         var events = body.events
         var seatArr = []
         for(i=0;i<events.length;i++){
           var evtSeat = events[i]
-            seatArr.push({image: evtSeat.performers[0].url, venue: evtSeat.venue.name, title: evtSeat.title, address: evtSeat.venue.address + ' ' + evtSeat.venue.city + ', ' + evtSeat.venue.state + ' ' + evtSeat.venue.postal_code, startTime:evtSeat.datetime_local, description: evtSeat.url})
+            seatArr.push({image:"", venue: evtSeat.venue.name, title: evtSeat.title, address: evtSeat.venue.address + ' ' + evtSeat.venue.city + ', ' + evtSeat.venue.state + ' ' + evtSeat.venue.postal_code, startTime:evtSeat.datetime_local, description: "", tickets:evtSeat.url})
             ///SOUNDCLOUD API REQUEST
             // console.log(evtSeat.performers[0].name)
             }
             res.json(query.shuffleArr(seatArr))
           })
-
-  } else {
+  } else if (userKeyword === 'music' || userKeyword === 'concerts'){
+      var newDate = userDate.split("/")
+      var finalDate = newDate[2] + "-" + newDate[0] + "-" + newDate[1]
+  //////////////////////SEATGEEK API////////////////////////////////
+      var seatgeekUrl= "https://api.seatgeek.com/2/events?venue.city="+ userLocation + "&taxonomies.name=concert&datetime_utc.gt=" + finalDate + ""
+      request({url: seatgeekUrl, json: true}, function(error, response, body){
+        var events = body.events
+        var seatArr = []
+        for(i=0;i<events.length;i++){
+          var evtSeat = events[i]
+            seatArr.push({image:"", venue: evtSeat.venue.name, title: evtSeat.title, address: evtSeat.venue.address + ' ' + evtSeat.venue.city + ', ' + evtSeat.venue.state + ' ' + evtSeat.venue.postal_code, startTime:evtSeat.datetime_local, description: "", tickets:evtSeat.url})
+            ///SOUNDCLOUD API REQUEST
+            // console.log(evtSeat.performers[0].name)
+            }
+            res.json(query.shuffleArr(seatArr))
+          })
+  }else{
   //////////////////EVENTFUL API SEARCH//////////////////////////////////////
       client.searchEvents({location:userLocation , date:userDate, page_size:9, keywords:userKeyword}, function(err,data){
         if(err){
@@ -89,8 +98,6 @@ var query = {
    return array;
   }
 }
-
-
 
 // Single-Event-View Route
 // View a Single Event on a Users Calendar

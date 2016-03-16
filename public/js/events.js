@@ -21,6 +21,8 @@ $(function(){
         var $address = $('<h5 class="address">'+ data.address +'</h5>')
         var $venue = $('<h4 class="venue">'+ data.venue +'</h4>')
         var $eventDescription = $('<h4 class="description">'+ data.description + '</h4>')
+        var $tickets = $('<a href=' + data.tickets + ' <i class="fa fa-ticket fa-4x"></i></a><br><h4>Buy Tickets</h4>')
+
         // Append html tags to div before populating page
         $divThumbnail.append($icons).append($eventTitle)
         // If image exists append it to the div
@@ -35,6 +37,9 @@ $(function(){
         $divThumbnail.append($startTime)
         if(data.endTime){
           $divThumbnail.append($endTime)
+        }
+        if(data.tickets){
+          $divThumbnail.append($tickets)
         }
 
         $divThumbnail.append($eventDescription)
