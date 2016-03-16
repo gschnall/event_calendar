@@ -27,10 +27,6 @@
     margin-bottom: 6px;
 	}
 
-	#trash:hover {
-    background:gold;
-  }
-
 	#external-events {
 		max-width: 200px;
     max-height: 260px;
@@ -79,4 +75,11 @@
 
   .fc-day{
     border-color: black;
+    background: -moz-radial-gradient(center, ellipse cover, #c0c0c0 0%, #808080 100%); /* ff3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #c0c0c0), color-stop(100%, #808080)); /* safari4+,chrome */
+background: -webkit-radial-gradient(center, ellipse cover, #c0c0c0 0%, #808080 100%); /* safari5.1+,chrome10+ */
+background: -o-radial-gradient(center, ellipse cover, #c0c0c0 0%, #808080 100%); /* opera 11.10+ */
+background: -ms-radial-gradient(center, ellipse cover, #c0c0c0 0%, #808080 100%); /* ie10+ */
+background: radial-gradient(ellipse at center, #c0c0c0 0%, #808080 100%); /* w3c */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c0c0c0', endColorstr='#808080',GradientType=1 ); /* ie6-9 */ 
   }
