@@ -25,6 +25,7 @@ userRouter.route('/addEvent/:id')
   })
 */
 
+// :Add event to User event array 
 userRouter.post('/addEvent', isLoggedIn, function(req, res){
   User.findOne({_id: req.user._id}, function(err, user){
     if(err) throw err
@@ -46,6 +47,42 @@ userRouter.get('/calendar/events', isLoggedIn, function(req, res){
     .exec(function(err, user){
       res.json({userName: user.local.name, userEvents: user.local.events})
     })
+})
+
+// :delete event from user event array
+userRouter.delete('/calendar/events', isLoggedIn, function(req, res){
+  User.findOne({_id: req.user._id}, function(err, user){
+    if(err) throw err
+    var toRemove = user.local.events.indexOf(req.body.eventId)
+    user.local.events.splice(toRemove, 1)
+    user.save()
+  })
+  Event.findOneAndRemove({_id: req.body.eventId}, function(err, user){
+    if(err) throw err
+  })
+  res.json({success:true})
+})
+
+// :Update event from user event array Based on Calendar drop/drag/resize
+userRouter.patch('/calendar/events', isLoggedIn, function(req, res){
+  User.findOne({_id: req.user._id}, function(err, user){
+    if(err) throw err
+    var toUpdate = user.local.events.indexOf(req.body.eventId)
+    user.local.events[toUpdate].start = req.body.eventStart
+    if(req.body.eventStop){
+      user.local.events[toUpdate].end = req.body.eventStop
+    }
+    user.save()
+  })
+  Event.findOne({_id: req.body.eventId}, function(err, event){
+    if(err) throw err
+    event.start = req.body.eventStart
+    if(req.body.eventStop){
+      event.end = req.body.eventStop
+    }
+    event.save()
+  })
+  res.json({success:true})
 })
 
 // :Login
