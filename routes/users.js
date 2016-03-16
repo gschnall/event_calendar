@@ -63,15 +63,26 @@ userRouter.delete('/calendar/events', isLoggedIn, function(req, res){
   res.json({success:true})
 })
 
+// :Update event from user event array Based on Calendar drop/drag/resize
 userRouter.patch('/calendar/events', isLoggedIn, function(req, res){
-  /*
   User.findOne({_id: req.user._id}, function(err, user){
     if(err) throw err
     var toUpdate = user.local.events.indexOf(req.body.eventId)
-    user.local.events[toUpdate].start
+    user.local.events[toUpdate].start = req.body.eventStart
+    if(req.body.eventStop){
+      user.local.events[toUpdate].end = req.body.eventStop
+    }
+    user.save()
   })
-  */
-  res.json(req.body)
+  Event.findOne({_id: req.body.eventId}, function(err, event){
+    if(err) throw err
+    event.start = req.body.eventStart
+    if(req.body.eventStop){
+      event.end = req.body.eventStop
+    }
+    event.save()
+  })
+  res.json({success:true})
 })
 
 // :Login
