@@ -1,6 +1,13 @@
 <% include ./partials/events_header.ejs %>
+<% include ./partials/navbar.ejs%>
 
-<% include ./partials/navbar.ejs %>
+<!-- <% if(User.findOne({_id: User._id})){%>
+  <% include ./partials/navbarUser.ejs%>
+<%} else {%>
+
+<%}%> -->
+
+
 
 <!-- <div class="text-center col-md-8 col-md-offset-2">
     <h1><span class="fa fa-lock"></span>NodeJS + Passport</h1>
@@ -9,10 +16,6 @@
     <a href="/signup" class="btn btn-default">Local Signup</a>
     <hr>
 </div> -->
-
-
-
-
 
 <div class="container">
   <div class="row">
