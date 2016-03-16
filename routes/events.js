@@ -2,30 +2,54 @@
 var
   express = require('express'),
   eventRouter = express.Router(),
-  eventful = require('eventful-node')
+  eventful = require('eventful-node'),
+  yelp = require('../config/yelp.js'),
+  moment = require('../public/js/lib/moment.min.js')
 
 // Main Event Route - Find Events
 eventRouter.post('/search', function(req, res){
   var userLocation = req.body.location
   var userDate = req.body.date
-  var userKeyword = req.body.keyword
+  var userKeyword = req.body.keyword.toLowerCase()
   var client = new eventful.Client(process.env.EVENTFUL_KEY)
-  client.searchEvents({location:userLocation , date:userDate, page_size:9, keywords:userKeyword}, function(err,data){
-    if(err){
-      return console.log(err);
-    }
+  console.log(userDate)
 
-    console.log('Recieved ' + data.search.total_items + ' events');
-    var eventArr = []
-    for(var i in data.search.events.event){
-      var evt = data.search.events.event[i]
-      if(evt.image){
-        eventArr.push({image: evt.image.medium.url,title:evt.title, venue: evt.venue_name, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
+  if(userKeyword === 'restaurant' || userKeyword ==='bar' || userKeyword ==='drink' || userKeyword ==='food'){
+    ////////////YELP API SEARCH////////////////////////////////////
+    yelp.search({ term: userKeyword, location: userLocation, limit:9})
+    .then(function (data) {
+      var yelpArr = []
+      for(var i in data.businesses){
+        console.log(data.businesses[i].name)
+        console.log(userDate)
+        var evtYelp = data.businesses[i]
+
+          yelpArr.push({image: evtYelp.image_url, venue: evtYelp.rating, title: evtYelp.name, address: evtYelp.location.display_address, description:evtYelp.snippet_text})
       }
-      eventArr.push({title:evt.title, venue: evt.venue_name, address: evt.venue_address, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
-  }
-    res.json(query.shuffleArr(eventArr))
-  })
+      res.json(query.shuffleArr(yelpArr))
+    })
+    .catch(function (err) {
+      console.error(err);
+    });
+  } else {
+      ////////////////EVENTFUL API SEARCH//////////////////////////////////////
+      client.searchEvents({location:userLocation , date:userDate, page_size:9, keywords:userKeyword}, function(err,data){
+        if(err){
+          return console.log(err);
+        }
+        var eventArr = []
+        for(var i in data.search.events.event){
+          console.log( data.search.events.event[i].venue_name)
+          var evt = data.search.events.event[i]
+
+          if(evt.image){
+            eventArr.push({image: evt.image.medium.url,title:evt.title, venue: evt.venue_name, address: evt.venue_address, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
+          }
+          eventArr.push({title:evt.title, venue: evt.venue_name, address: evt.venue_address, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
+      }
+        res.json(query.shuffleArr(eventArr))
+      })
+    }
 })
 
 var query = {
