@@ -38,6 +38,16 @@ $(document).ready(function() {
               console.log("Trashed!")
               $(this).toggle('explode')
               $('#calendar').fullCalendar('removeEvents', event._id);
+              $.ajax({
+                 url: '/calendar/events',
+                 type: 'DELETE',
+                 dataType: 'json',
+                 contentType: 'application/json',
+                 data: JSON.stringify({eventId: event._id})
+               })
+                .done(function(data){
+                  console.log(data)
+               })
           }
         },
         droppable: true, // this allows things to be dropped onto the calendar

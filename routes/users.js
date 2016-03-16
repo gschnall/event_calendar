@@ -51,16 +51,16 @@ userRouter.get('/calendar/events', isLoggedIn, function(req, res){
 
 // :delete event from user event array
 userRouter.delete('/calendar/events', isLoggedIn, function(req, res){
-  Event.findOneAndRemove({_id: req.body.eventId}, function(err, user){
-    if(err) throw err
-  })
   User.findOne({_id: req.user._id}, function(err, user){
     if(err) throw err
     var toRemove = user.local.events.indexOf(req.body.eventId)
     user.local.events.splice(toRemove, 1)
     user.save()
   })
-  res.send(user)
+  Event.findOneAndRemove({_id: req.body.eventId}, function(err, user){
+    if(err) throw err
+  })
+  res.json({success:true})
 })
 
 // :Login
