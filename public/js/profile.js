@@ -13,7 +13,6 @@ $(document).ready(function() {
       })
    }, 
    setupCal: function(events){
-     console.log(events)
       $('#calendar').fullCalendar({
         header: {
           left: 'prev,next today',
@@ -21,7 +20,26 @@ $(document).ready(function() {
           right: 'month,agendaWeek,agendaDay'
         },
         editable: true,
+        dragRevertDuration: 1200,
         events: events,
+        eventDragStart: function( event, jsEvent){
+          $('#trash').css('background-color', "gold")
+        },
+        eventDragStop: function(event,jsEvent) {
+          var trashEl = jQuery('#trash');
+          var ofs = trashEl.offset();
+          var x1 = ofs.left;
+          var x2 = ofs.left + trashEl.outerWidth(true);
+          var y1 = ofs.top;
+          var y2 = ofs.top + trashEl.outerHeight(true);
+          $('#trash').css('background-color', "white")
+          if (jsEvent.pageX >= x1 && jsEvent.pageX<= x2 &&
+            jsEvent.pageY>= y1 && jsEvent.pageY <= y2) {
+              console.log("Trashed!")
+              $(this).toggle('explode')
+              $('#calendar').fullCalendar('removeEvents', event._id);
+          }
+        },
         droppable: true, // this allows things to be dropped onto the calendar
         drop: function(target, thing) {
           // is the "remove after drop" checkbox checked?
@@ -43,6 +61,16 @@ $(document).ready(function() {
   }
   //Initialize Profile Calendar
   profile.init()
+
+  // Destroy/Trash Event Event
+  $("#trash").droppable({
+    drop: function(event, ui){
+      alert('dropping')
+      //$(this).css()
+      console.log("Drop it like it's hot")
+      console.log($(this))
+    }
+  })
 
 
 	/* initialize the external events

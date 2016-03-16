@@ -25,6 +25,7 @@ userRouter.route('/addEvent/:id')
   })
 */
 
+// :Add event to User event array 
 userRouter.post('/addEvent', isLoggedIn, function(req, res){
   User.findOne({_id: req.user._id}, function(err, user){
     if(err) throw err
@@ -46,6 +47,20 @@ userRouter.get('/calendar/events', isLoggedIn, function(req, res){
     .exec(function(err, user){
       res.json({userName: user.local.name, userEvents: user.local.events})
     })
+})
+
+// :delete event from user event array
+userRouter.delete('/calendar/events', isLoggedIn, function(req, res){
+  Event.findOneAndRemove({_id: req.body.eventId}, function(err, user){
+    if(err) throw err
+  })
+  User.findOne({_id: req.user._id}, function(err, user){
+    if(err) throw err
+    var toRemove = user.local.events.indexOf(req.body.eventId)
+    user.local.events.splice(toRemove, 1)
+    user.save()
+  })
+  res.send(user)
 })
 
 // :Login
