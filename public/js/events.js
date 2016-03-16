@@ -97,7 +97,7 @@ $(function(){
             description:description,
             venu_type:venue,
             address:address,
-            start:start,
+            start:formatStart,
             end:end,
             title:title
           })
