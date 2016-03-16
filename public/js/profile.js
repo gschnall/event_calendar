@@ -7,11 +7,10 @@ $(document).ready(function() {
        method: 'GET'
      })
       .done(function(data){
-        console.log(data.userEvents)
         profile.setupCal(data.userEvents)
       })
    }, 
-   patchEventTime: function(event, delta){
+   patchEventTime: function(event, delta, thisView){
     var endTime = false
     if(event.end){ endTime = event.end.format() }
     $.ajax({
@@ -22,7 +21,9 @@ $(document).ready(function() {
        data: JSON.stringify({eventId: event._id, eventStart: event.start.format(), eventStop: endTime})
      })
       .done(function(data){
-        console.log(data)
+        event.backgroundColor = 'green';
+        $('#calendar').fullCalendar( 'rerenderEvents' );
+        //console.log(data)
       })
    },
    setupCal: function(events){
@@ -32,16 +33,17 @@ $(document).ready(function() {
           center: 'title',
           right: 'month,agendaWeek,agendaDay'
         },
+        eventBorderColor: "black",
         editable: true,
         dragRevertDuration: 1200,
         events: events,
         eventResize: function(event, delta){
-          alert(event.start.format())
-          profile.patchEventTime(event, delta)
+          //alert(event.start.format())
+          profile.patchEventTime(event, delta, $(this))
         },
         eventDrop: function(event, delta){
-          alert(event.title + " was dropped on " + event.start.format())
-          profile.patchEventTime(event, delta)
+          //alert(event.title + " was dropped on " + event.start.format())
+          profile.patchEventTime(event, delta, $(this))
         },
         eventDragStart: function( event, jsEvent){
           $('#trash').css('background-color', "gold")
