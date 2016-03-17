@@ -1,4 +1,9 @@
-require('dotenv').config()
+// :: Setup Enviroment Variables ::
+try {
+    require('dotenv').config();
+} catch (ex) {
+    handleErr(ex);
+}
 
 var Yelp = require('yelp');
 

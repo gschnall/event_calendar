@@ -14,7 +14,11 @@ var
 
 
 // :: Setup Enviroment Variables ::
-require('dotenv').config();
+try {
+    require('dotenv').config();
+} catch (ex) {
+    handleErr(ex);
+}
 // :: Models ::
 var User = require('./models/User.js')
 var Event = require('./models/Event.js')
