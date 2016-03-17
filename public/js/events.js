@@ -10,16 +10,21 @@ $(function(){
         var startTime = moment(data.startTime).format('MMMM Do YYYY, h:mm a')
         var endTime = moment(data.endTime).format('MMMM Do YYYY, h:mm a')
         //html to create Event Boxes
-        var $divContainer = $('<div class="col-sm-6 col-md-4"></div>')
-        var $divThumbnail = $('<div class ="thumbnail"></div>')
+        var $divContainer = $('<div class="col-sm-6 col-md-4 contain"></div>')
+        var $divThumbnail = $('<button class="btn btn-primary thumbnail" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="thumb-'+ index +'"></button>')
+        // <button type="button" class ="thumbnail"></button>
         var $icons = $('<i class="fa fa-calendar-plus-o fa-2x pull-right"></i>')
-        var $eventTitle = $('<div class="caption"><h2>'+ data.title +'</h2></div>')
-        var $startTime = $('<h5 class="start-time">'+ startTime +'</h5>')
-        var $endTime = $('<h5 class="end-time">'+ endTime +'</h5>')
+        var $divBox = $('<div class="collapse divBox" id="'+ index +'"></div>')
+        var $divDetails = $('<div class="well"></div>')
+        var $eventTitle = $('<h2 class="caption">'+ data.title +'</h2>')
+        var $startTime = $('<p class="start-time">'+ startTime +'</p>')
+        var $endTime = $('<p class="end-time">'+ endTime +'</p>')
+        if(data.address.indexOf(',') === -1){
+          data.address = data.address + ', ' + $('#location').val()
+        }
         var $address = $('<address class="address">'+ data.address +'</address>')
-        console.log($address)
-        var $venue = $('<h4 class="venue">'+ data.venue +'</h4>')
-        var $eventDescription = $('<h4 class="description">'+ data.description + '</h4>')
+        var $venue = $('<p class="venue">'+ data.venue +'</p>')
+        var $eventDescription = $('<p class="description">'+ data.description + '</p>')
         var $tickets = $('<a href=' + data.tickets + ' <i class="fa fa-ticket fa-4x"></i></a><br><h4>Buy Tickets</h4>')
         var $soundPlayer = $('<iframe id="'+ data.performer  +  ' "class="players" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/76067623&amp;auto_play=false&amp;hide_related=true&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
 
@@ -28,35 +33,53 @@ $(function(){
         // If image exists append it to the div
         if(data.image){
           var $imgSrc = $('<img src='+ data.image + '>')
-          $divThumbnail.append($imgSrc)
-        }
-        $divThumbnail.append($venue)
-        if(data.address){
-          $divThumbnail.append($address)
-        }
-        $divThumbnail.append($startTime)
-        if(data.endTime){
-          $divThumbnail.append($endTime)
+          $divDetails.append($imgSrc)
         }
 
-        // if()
+        $divDetails.append($venue)
+
+        $divDetails.append($startTime)
+        if(data.endTime){
+          $divDetails.append($endTime)
+        }
 
         if(data.tickets){
-          $divThumbnail.append($tickets)
+          $divDetails.append($tickets)
+        }
+        if(data.address){
+
+          $divDetails.append($address)
         }
 
         if(data.performer){
-          $divThumbnail.append($soundPlayer)
+          $divDetails.append($soundPlayer)
         }
 
-        $divThumbnail.append($eventDescription)
+        $divDetails.append($eventDescription)
+        $divBox.append($divDetails)
+
         $divContainer.append($divThumbnail)
+        $divContainer.append($divBox)
         //For each event in the array, append it to the event container to populate page with 5 results
+        // console.log($divThumbnail)
+        // console.log($divBox)
+        // console.log($divDetails)
+
+
         $('#event-container').append($divContainer)
-        // soundCloud.playTune(data.performer)
+
       })
       }
     }
+
+    $('body').on('click', '.thumbnail', function(evt){
+        var thumb = $(this).attr('id').split('-')
+        var thumbIndex = thumb[1]
+        detailIndex = thumbIndex
+        $('#' + detailIndex).slideToggle( "slow", function() {
+          console.log('slide')
+        });
+    })
 
 // Click event for Search Events button -- populates page with three results
   $('#start-search').on('click', function(){
@@ -93,6 +116,9 @@ $(function(){
     $('#event-text').html("")
     $('#event-text').val($(evt.target).html())
   })
+
+
+
 
 // Adds event to user's calendar on click
   $('body').on('click', '.fa-calendar-plus-o', function(){
