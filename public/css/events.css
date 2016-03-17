@@ -67,6 +67,16 @@ address{
   opacity: 0.7;
 }
 
+#no-results {
+  text-align: center;
+  font-size: 50px;
+  color: red;
+  text-shadow: 1px 1px white;
+  background-color: white;
+  opacity: 0.6;
+  border-radius: 10px;
+}
+
 .thumbnail{
   height: 300px;
   text-align: center;

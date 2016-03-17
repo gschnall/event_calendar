@@ -65,8 +65,16 @@ $(function(){
         $('#event-container').append($divContainer)
 
       })
+    },
+    noResults: function(data){
+      console.log(data)
+      if(String(data)==[]){
+        console.log(data)
+        var $noResult = $('<h1 id="no-results"><i class="fa fa-frown-o fa-3x"></i> No Results Found </h1>')
+        $('#event-container').append($noResult)
       }
     }
+  }
 
     $('body').on('click', '.thumbnail', function(evt){
         var thumb = $(this).attr('id').split('-')
@@ -88,6 +96,7 @@ $(function(){
     })
     .done(function(data){
       $('#event-container').html("")
+      events.noResults(data)
       events.populateEvents(data)
       $('iframe').each(function(e){
           var artist = $(this).attr('id')
