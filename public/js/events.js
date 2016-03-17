@@ -69,7 +69,6 @@ $(function(){
     .done(function(data){
       $('#event-container').html("")
       events.populateEvents(data)
-      console.log(data)
       $('iframe').each(function(e){
           var artist = $(this).attr('id')
           soundCloud.playTune(artist,e)
@@ -96,7 +95,6 @@ $(function(){
 
 // Adds event to user's calendar on click
   $('body').on('click', '.fa-calendar-plus-o', function(){
-    console.log('clicked')
     var $calendarChecked = $(this)
     var description = ($(this).parent().children('.description').text())
     var venue = ($(this).parent().children('.venue').text())
@@ -124,11 +122,8 @@ $(function(){
         })
         .done(function(data){
           $calendarChecked.toggleClass("fa-calendar-check-o")
-          console.log(data)
         })
         .fail(function(){
-          console.log(start)
-          console.log(formatStart)
           window.location.replace('/signup');
         })
 
