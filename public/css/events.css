@@ -9,6 +9,11 @@ address{
   margin-top: 10px;
 }
 
+.thumbnail{
+  border: 2px solid black;
+  overflow: hidden;
+}
+
 .fa-star:hover {
   color: #DECC0A;
 }
@@ -26,17 +31,14 @@ address{
 }
 
 .thumbnail{
-  height: 400px;
-  overflow: scroll;
+  height: 300px;
   text-align: center;
 }
 
-.searches{
-  position: absolute;
-  z-index: 999;
-  margin-top: -30%;
-  padding-left: 7%;
+iframe{
+  width:100%;
 }
+
 
 /*SEARCH CALENDAR STYLING*/
 .ui-datepicker-header {
