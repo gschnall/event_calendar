@@ -1,4 +1,10 @@
 
+address{
+  background-image: url("../images/ring-alt.gif");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
 #event-container{
   margin-top: 10px;
 }
@@ -225,8 +231,3 @@ header.carousel .fill {
     header.carousel .carousel {
         height: 70%;
     }
-address{
-  background-image: url("../images/ring-alt.gif");
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-}

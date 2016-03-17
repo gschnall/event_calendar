@@ -20,7 +20,7 @@ eventRouter.post('/search', function(req, res){
   if(userKeyword === 'restaurant' || userKeyword === 'restaurants' || userKeyword ==='bar' || userKeyword ==='bars' || userKeyword ==='drink' || userKeyword ==='drinks' || userKeyword ==='food'){
   //////////////YELP API SEARCH////////////////////////////////////
 
-    yelp.search({ term: userKeyword, location: userLocation, limit:9})
+    yelp.search({ term: userKeyword, location: userLocation, limit:20})
     .then(function (data) {
       var yelpArr = []
       for(var i in data.businesses){
@@ -65,15 +65,14 @@ eventRouter.post('/search', function(req, res){
           console.log(evtSeat.performers)
           // console.log(evtSeat.performers[0].short_name)
             seatArr.push({image:"", venue: evtSeat.venue.name, title: evtSeat.title, address: evtSeat.venue.address + ' ' + evtSeat.venue.city + ', ' + evtSeat.venue.state + ' ' + evtSeat.venue.postal_code, startTime:evtSeat.datetime_local, description: "", tickets:evtSeat.url, performer:evtSeat.performers[0].name })
-            ///SOUNDCLOUD API REQUEST
-            // console.log(evtSeat.performers[0].name)
+
 
             }
             res.json(query.shuffleArr(seatArr))
           })
   }else{
   //////////////////EVENTFUL API SEARCH//////////////////////////////////////
-      client.searchEvents({location:userLocation , date:userDate, page_size:9, keywords:userKeyword}, function(err,data){
+      client.searchEvents({location:userLocation , date:userDate, page_size:50, keywords:userKeyword}, function(err,data){
         if(err){
           return console.log(err);
         }
