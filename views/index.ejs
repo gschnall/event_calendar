@@ -7,7 +7,29 @@
   <% include ./partials/navbar.ejs%>
   <% }%>
 
-<div class="container">
+
+
+  <body>
+      <!-- Header Carousel -->
+      <header id="myCarousel" class="carousel slide">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+              <div class="item active">
+                  <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide One');"></div>
+
+              </div>
+              <div class="item">
+                  <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');"></div>
+
+              </div>
+              <div class="item">
+                  <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
+
+              </div>
+          </div>
+      </header>
+
+<div class="container searches">
   <div class="row">
 
   </div>
@@ -51,3 +73,8 @@
 
   </div>
 </div>
+  <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+  </script>
