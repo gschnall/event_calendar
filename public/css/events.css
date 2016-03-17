@@ -165,3 +165,9 @@
     height: 29px;
     margin-bottom: 0;
 }
+
+address{
+  background-image: url("../images/ring-alt.gif");   
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
