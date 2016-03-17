@@ -7,6 +7,7 @@ var
   moment = require('../public/js/lib/moment.min.js'),
   seatgeek = require('../config/seatgeek.js'),
   request = require('request')
+  // soundCloud = require('../public/js/soundcloud.js')
 
 // Main Event Route - Find Events
 eventRouter.post('/search', function(req, res){
@@ -22,8 +23,8 @@ eventRouter.post('/search', function(req, res){
     .then(function (data) {
       var yelpArr = []
       for(var i in data.businesses){
-        console.log(data.businesses[i].name)
-        console.log(userDate)
+        // console.log(data.businesses[i].name)
+        // console.log(userDate)
         var evtYelp = data.businesses[i]
         yelpArr.push({image: evtYelp.image_url, venue: evtYelp.rating, title: evtYelp.name, address: evtYelp.location.display_address, description:evtYelp.snippet_text})
       }
@@ -55,12 +56,17 @@ eventRouter.post('/search', function(req, res){
       var seatgeekUrl= "https://api.seatgeek.com/2/events?venue.city="+ userLocation + "&taxonomies.name=concert&datetime_utc.gt=" + finalDate + ""
       request({url: seatgeekUrl, json: true}, function(error, response, body){
         var events = body.events
+
         var seatArr = []
         for(i=0;i<events.length;i++){
+
           var evtSeat = events[i]
-            seatArr.push({image:"", venue: evtSeat.venue.name, title: evtSeat.title, address: evtSeat.venue.address + ' ' + evtSeat.venue.city + ', ' + evtSeat.venue.state + ' ' + evtSeat.venue.postal_code, startTime:evtSeat.datetime_local, description: "", tickets:evtSeat.url})
+          console.log(evtSeat.performers)
+          // console.log(evtSeat.performers[0].short_name)
+            seatArr.push({image:"", venue: evtSeat.venue.name, title: evtSeat.title, address: evtSeat.venue.address + ' ' + evtSeat.venue.city + ', ' + evtSeat.venue.state + ' ' + evtSeat.venue.postal_code, startTime:evtSeat.datetime_local, description: "", tickets:evtSeat.url, performer:evtSeat.performers[0].name })
             ///SOUNDCLOUD API REQUEST
             // console.log(evtSeat.performers[0].name)
+
             }
             res.json(query.shuffleArr(seatArr))
           })
@@ -72,7 +78,7 @@ eventRouter.post('/search', function(req, res){
         }
         var eventArr = []
         for(var i in data.search.events.event){
-          console.log( data.search.events.event[i])
+          // console.log( data.search.events.event[i])
           var evt = data.search.events.event[i]
 
           if(evt.image){
