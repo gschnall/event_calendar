@@ -44,9 +44,8 @@ eventRouter.post('/search', function(req, res){
         var seatArr = []
         for(i=0;i<events.length;i++){
           var evtSeat = events[i]
-            seatArr.push({image:"", venue: evtSeat.venue.name, title: evtSeat.title, address: evtSeat.venue.address + ' ' + evtSeat.venue.city + ', ' + evtSeat.venue.state + ' ' + evtSeat.venue.postal_code, startTime:evtSeat.datetime_local, description: "", tickets:evtSeat.url})
-            ///SOUNDCLOUD API REQUEST
-            // console.log(evtSeat.performers[0].name)
+            seatArr.push({image:"", venue: evtSeat.venue.name, title: evtSeat.title, address: evtSeat.venue.address + ' ' + evtSeat.venue.city + ', ' + evtSeat.venue.state + ' ' + evtSeat.venue.postal_code, startTime:evtSeat.datetime_local, description: evtSeat.title, tickets:evtSeat.url})
+
             }
             res.json(query.shuffleArr(seatArr))
           })
@@ -62,11 +61,8 @@ eventRouter.post('/search', function(req, res){
         for(i=0;i<events.length;i++){
 
           var evtSeat = events[i]
-          console.log(evtSeat.performers)
           // console.log(evtSeat.performers[0].short_name)
-            seatArr.push({image:"", venue: evtSeat.venue.name, title: evtSeat.title, address: evtSeat.venue.address + ' ' + evtSeat.venue.city + ', ' + evtSeat.venue.state + ' ' + evtSeat.venue.postal_code, startTime:evtSeat.datetime_local, description: "", tickets:evtSeat.url, performer:evtSeat.performers[0].name })
-
-
+            seatArr.push({image:"", venue: evtSeat.venue.name, title: evtSeat.title, address: evtSeat.venue.address + ' ' + evtSeat.venue.city + ', ' + evtSeat.venue.state + ' ' + evtSeat.venue.postal_code, startTime:evtSeat.datetime_local, description: evtSeat.title, tickets:evtSeat.url, performer:evtSeat.performers[0].name })
             }
             res.json(query.shuffleArr(seatArr))
           })
