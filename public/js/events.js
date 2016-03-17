@@ -12,7 +12,6 @@ $(function(){
         //html to create Event Boxes
         var $divContainer = $('<div class="col-sm-6 col-md-4 contain"></div>')
         var $divThumbnail = $('<button class="btn btn-primary thumbnail" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="thumb-'+ index +'"></button>')
-        // <button type="button" class ="thumbnail"></button>
         var $icons = $('<i class="fa fa-calendar-plus-o fa-2x pull-right"></i>')
         var $divBox = $('<div class="collapse divBox" id="'+ index +'"></div>')
         var $divDetails = $('<div class="well"></div>')
@@ -61,10 +60,6 @@ $(function(){
         $divContainer.append($divThumbnail)
         $divContainer.append($divBox)
         //For each event in the array, append it to the event container to populate page with 5 results
-        // console.log($divThumbnail)
-        // console.log($divBox)
-        // console.log($divDetails)
-
 
         $('#event-container').append($divContainer)
 
@@ -116,9 +111,6 @@ $(function(){
     $('#event-text').html("")
     $('#event-text').val($(evt.target).html())
   })
-
-
-
 
 // Adds event to user's calendar on click
   $('body').on('click', '.fa-calendar-plus-o', function(){
