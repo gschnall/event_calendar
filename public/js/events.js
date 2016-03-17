@@ -38,9 +38,13 @@ $(function(){
           $divThumbnail.append($endTime)
         }
 
+        // if()
+
         if(data.tickets){
           $divThumbnail.append($tickets)
-          // soundcloud player
+        }
+
+        if(data.performer){
           $divThumbnail.append($soundPlayer)
         }
 
@@ -65,6 +69,8 @@ $(function(){
     .done(function(data){
       $('#event-container').html("")
       events.populateEvents(data)
+      console.log(data)
+
       $('iframe').each(function(e){
           var artist = $(this).attr('id')
           soundCloud.playTune(artist,e)
