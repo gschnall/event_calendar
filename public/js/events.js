@@ -17,6 +17,7 @@ $(function(){
         var $startTime = $('<h5 class="start-time">'+ startTime +'</h5>')
         var $endTime = $('<h5 class="end-time">'+ endTime +'</h5>')
         var $address = $('<address class="address">'+ data.address +'</address>')
+        console.log($address)
         var $venue = $('<h4 class="venue">'+ data.venue +'</h4>')
         var $eventDescription = $('<h4 class="description">'+ data.description + '</h4>')
         var $tickets = $('<a href=' + data.tickets + ' <i class="fa fa-ticket fa-4x"></i></a><br><h4>Buy Tickets</h4>')
@@ -69,7 +70,6 @@ $(function(){
     .done(function(data){
       $('#event-container').html("")
       events.populateEvents(data)
-      console.log(data)
       $('iframe').each(function(e){
           var artist = $(this).attr('id')
           soundCloud.playTune(artist,e)
@@ -96,11 +96,11 @@ $(function(){
 
 // Adds event to user's calendar on click
   $('body').on('click', '.fa-calendar-plus-o', function(){
-    console.log('clicked')
     var $calendarChecked = $(this)
     var description = ($(this).parent().children('.description').text())
     var venue = ($(this).parent().children('.venue').text())
-    var address = ($(this).parent().children('.address').text())
+    var address = ($(this).parent().children('address'))
+    var addressFrame = address[0].innerHTML
     var start = ($(this).parent().children('.start-time').text())
     var end = ($(this).parent().children('.end-time').text())
     var title = ($(this).parent().children('.caption').text())
@@ -116,7 +116,7 @@ $(function(){
           {
             description:description,
             venu_type:venue,
-            address:address,
+            address:addressFrame,
             start:formatStart,
             end:end,
             title:title
@@ -124,11 +124,8 @@ $(function(){
         })
         .done(function(data){
           $calendarChecked.toggleClass("fa-calendar-check-o")
-          console.log(data)
         })
         .fail(function(){
-          console.log(start)
-          console.log(formatStart)
           window.location.replace('/signup');
         })
 
