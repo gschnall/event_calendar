@@ -84,10 +84,11 @@ $(document).ready(function() {
           }
         },
         eventClick:  function(event, jsEvent, view) { // -MODAL CLICK FUNCTION
+            $('#modalTitle').html("");
             $('#modalTitle').html(event.title);
-            $('#modalBody').html(event.address);
-            $('#modalBody').append(event.description);
-            $('#eventUrl').attr('href',event.url);
+            $('#modalBody').html(event.description);
+            $('#modalBody').append(event.address);
+            // $('#eventUrl').attr('href',event.url);
             $('#fullCalModal').modal();
         },
         dayClick: function(date, jsEvent, view) {
