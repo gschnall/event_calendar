@@ -86,9 +86,8 @@ $(document).ready(function() {
         eventClick:  function(event, jsEvent, view) { // -MODAL CLICK FUNCTION
             $('#modalTitle').html("");
             $('#modalTitle').html(event.title);
-            $('#modalBody').html(event.description);
+            $('#modalBody').html(event.description + "<br><hr>");
             $('#modalBody').append(event.address);
-            // $('#eventUrl').attr('href',event.url);
             $('#fullCalModal').modal();
         },
         dayClick: function(date, jsEvent, view) {
