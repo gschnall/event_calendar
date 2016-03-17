@@ -26,7 +26,7 @@ eventRouter.post('/search', function(req, res){
         // console.log(data.businesses[i].name)
         // console.log(userDate)
         var evtYelp = data.businesses[i]
-        yelpArr.push({image: evtYelp.image_url, venue: evtYelp.rating, title: evtYelp.name, address: evtYelp.location.display_address, description:evtYelp.snippet_text})
+        yelpArr.push({image: evtYelp.image_url, venue: evtYelp.rating, title: evtYelp.name, address: evtYelp.location.address[0] + ' '+ evtYelp.location.city + ' ' +  evtYelp.location.state_code + ', ' + evtYelp.location.postal_code , description:evtYelp.snippet_text})
       }
       res.json(query.shuffleArr(yelpArr))
     })
@@ -80,9 +80,8 @@ eventRouter.post('/search', function(req, res){
         for(var i in data.search.events.event){
           // console.log( data.search.events.event[i])
           var evt = data.search.events.event[i]
-
           if(evt.image){
-            eventArr.push({image: evt.image.medium.url,title:evt.title, venue: evt.venue_name, address: evt.venue_address, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
+            eventArr.push({image: evt.image.medium.url,title:evt.title, venue: evt.venue_name, address: evt.venue_address + ' ' + evt.city_name + ', ' + evt.region_abbr + ' ' + evt.postal_code, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
           }
           eventArr.push({title:evt.title, venue: evt.venue_name, address: evt.venue_address, startTime:evt.start_time, endTime:evt.stop_time, description:evt.description})
       }
