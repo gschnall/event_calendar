@@ -10,8 +10,8 @@ $(function(){
         var startTime = moment(data.startTime).format('MMMM Do YYYY, h:mm a')
         var endTime = moment(data.endTime).format('MMMM Do YYYY, h:mm a')
         //html to create Event Boxes
-        var $divContainer = $('<div class="col-sm-6 col-md-4 contain"></div>')
-        var $divThumbnail = $('<button class="btn btn-primary thumbnail" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="thumb-'+ index +'"></button>')
+        var $divContainer = $('<div class="col-sm-6 col-md-4"></div>')
+        var $divThumbnail = $('<button class="btn thumbnail" type="button" id="thumb-'+ index +'"></button>')
         var $icons = $('<i class="fa fa-calendar-plus-o fa-2x pull-right"></i>')
         var $divBox = $('<div class="collapse divBox" id="'+ index +'"></div>')
         var $divDetails = $('<div class="well"></div>')
@@ -22,13 +22,14 @@ $(function(){
           data.address = data.address + ', ' + $('#location').val()
         }
         var $address = $('<address class="address">'+ data.address +'</address>')
-        var $venue = $('<p class="venue">'+ data.venue +'</p>')
-        var $eventDescription = $('<p class="description">'+ data.description + '</p>')
-        var $tickets = $('<a href=' + data.tickets + ' <i class="fa fa-ticket fa-4x"></i></a><br><h4>Buy Tickets</h4>')
+        var $venue = $('<h3 class="venue">'+ data.venue +'</h3>')
+        var $eventDescription = $('<hr><h3>Description</h3><p class="description">'+ data.description + '</p><hr>')
+        var $tickets = $('<a target="_blank" href=' + data.tickets + ' <i class="fa fa-ticket fa-4x"></i></a><br><h4>Buy Tickets</h4>')
         var $soundPlayer = $('<iframe id="'+ data.performer  +  ' "class="players" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/76067623&amp;auto_play=false&amp;hide_related=true&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
 
         // Append html tags to div before populating page
-        $divThumbnail.append($icons).append($eventTitle)
+        $divThumbnail.append($icons)
+        $divThumbnail.append($eventTitle)
         // If image exists append it to the div
         if(data.image){
           var $imgSrc = $('<img src='+ data.image + '>')

@@ -1,3 +1,13 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:200,300');
+
+body {
+     background-color:#333;
+     font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
+}
+
+a:link, a:visited {
+    color:#eee;
+}
 
 address{
   background-image: url("../images/ring-alt.gif");
@@ -10,12 +20,19 @@ address{
 }
 
 .thumbnail{
-  border: 2px solid black;
-  overflow: hidden;
+  width:100%;
+  white-space: pre-wrap;
+  opacity: .8;
 }
 
-.fa-star:hover {
-  color: #DECC0A;
+.thumbnail:hover{
+  background-color: white;
+  opacity: 1;
+}
+.fa-calendar-plus-o:before{
+  position: absolute;
+  top: 5px;
+  right: 25px;
 }
 
 .fa-calendar-plus-o:hover {
@@ -30,8 +47,21 @@ address{
   color:green;
 }
 
+.fa-ticket:before {
+  color: black;
+  opacity: 0.9;
+}
+
+.fa-ticket:hover {
+  opacity: 0.7;
+}
+
 .thumbnail{
   height: 300px;
+  text-align: center;
+}
+
+.well{
   text-align: center;
 }
 
