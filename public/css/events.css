@@ -1,8 +1,14 @@
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:200,300');
 
 body {
-     background-color:#333;
-     font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
+  background: url('../images/events_background.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color:#fff;
+  background-color:#333;
+  font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
 }
 
 a:link, a:visited {
@@ -29,6 +35,11 @@ address{
   background-color: white;
   opacity: 1;
 }
+
+.tagline {
+  text-shadow: 2px 2px black;
+}
+
 .fa-calendar-plus-o:before{
   position: absolute;
   top: 5px;
