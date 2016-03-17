@@ -10,7 +10,7 @@ $(document).ready(function() {
       .done(function(data){
         profile.setupCal(data.userEvents)
       })
-   }, 
+   },
    patchEventTime: function(event, delta, thisView){
     var endTime = false
     if(event.end){ endTime = event.end.format() }
@@ -84,17 +84,42 @@ $(document).ready(function() {
           }
         },
         eventClick:  function(event, jsEvent, view) { // -MODAL CLICK FUNCTION
-          console.log(event)
-          console.log(event._id)
             $('#modalTitle').html(event.title);
             $('#modalBody').html(event.address);
+            $('#modalBody').append(event.description);
             $('#eventUrl').attr('href',event.url);
             $('#fullCalModal').modal();
+        },
+        dayClick: function(date, jsEvent, view) {
+          var title = prompt('Event Title:');
+          if (title) {
+            $('#calendar').fullCalendar('renderEvent',
+            {
+                title: title,
+                start: date.format(),
+                color: "green"
+            },
+            true // make the event showup on cal
+            );
+            $.ajax({
+              method: 'POST',
+              url:'/addEvent',
+              contentType:"application/json",
+              dataType:"json",
+              data:JSON.stringify({
+                title: title,
+                start: date.format(),
+              })
+            })
+            .done(function(){
+              console.log("posted")
+            })
+          }
         }
-      });
-    }
-//End Profile obj
-  }
+  })
+ }
+}
+
   //Initialize Profile Calendar
   profile.init()
 
