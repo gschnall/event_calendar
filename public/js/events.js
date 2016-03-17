@@ -16,7 +16,7 @@ $(function(){
         var $eventTitle = $('<div class="caption"><h2>'+ data.title +'</h2></div>')
         var $startTime = $('<h5 class="start-time">'+ startTime +'</h5>')
         var $endTime = $('<h5 class="end-time">'+ endTime +'</h5>')
-        var $address = $('<h5 class="address">'+ data.address +'</h5>')
+        var $address = $('<address class="address">'+ data.address +'</address>')
         var $venue = $('<h4 class="venue">'+ data.venue +'</h4>')
         var $eventDescription = $('<h4 class="description">'+ data.description + '</h4>')
         var $tickets = $('<a href=' + data.tickets + ' <i class="fa fa-ticket fa-4x"></i></a><br><h4>Buy Tickets</h4>')
@@ -70,11 +70,14 @@ $(function(){
       $('#event-container').html("")
       events.populateEvents(data)
       console.log(data)
-
       $('iframe').each(function(e){
           var artist = $(this).attr('id')
           soundCloud.playTune(artist,e)
       })
+      $("address").each(function(){
+        var embed ="<iframe width='425' height='350' frameborder='0' scrolling='no'  marginheight='0' marginwidth='0'   src='https://maps.google.com/maps?&amp;q="+ encodeURIComponent( $(this).text() ) +"&amp;output=embed'></iframe>";
+        $(this).html(embed);
+     });
     })
   })
 
@@ -126,7 +129,7 @@ $(function(){
         .fail(function(){
           console.log(start)
           console.log(formatStart)
-          // window.location.replace('/signup');
+          window.location.replace('/signup');
         })
 
     })
