@@ -19,6 +19,7 @@ eventRouter.post('/search', function(req, res){
 /*<---------------Logic for Search(Yelp vs. SeatGeek vs. Eventful )---------------------->*/
   if(userKeyword === 'restaurant' || userKeyword === 'restaurants' || userKeyword ==='bar' || userKeyword ==='bars' || userKeyword ==='drink' || userKeyword ==='drinks' || userKeyword ==='food'){
   //////////////YELP API SEARCH////////////////////////////////////
+
     yelp.search({ term: userKeyword, location: userLocation, limit:9})
     .then(function (data) {
       var yelpArr = []

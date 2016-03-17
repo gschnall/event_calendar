@@ -25,6 +25,13 @@
   text-align: center;
 }
 
+.searches{
+  position: absolute;
+  z-index: 999;
+  margin-top: -30%;
+  padding-left: 7%;
+}
+
 /*SEARCH CALENDAR STYLING*/
 .ui-datepicker-header {
     background-color: black;
@@ -166,8 +173,60 @@
     margin-bottom: 0;
 }
 
+
+/*CAROUSEL*/
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.img-portfolio {
+    margin-bottom: 30px;
+}
+
+.img-hover:hover {
+    opacity: 0.8;
+}
+
+/* Home Page Carousel */
+
+header.carousel {
+    height: 80%;
+    position:  relative;
+    z-index: 0;
+}
+
+header.carousel .item,
+header.carousel .item.active,
+header.carousel .carousel-inner {
+    height: 100%;
+}
+
+header.carousel .fill {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+/* Responsive Styles */
+
+
+@media(max-width:767px) {
+    .img-portfolio {
+        margin-bottom: 15px;
+    }
+
+    header.carousel .carousel {
+        height: 70%;
+    }
 address{
-  background-image: url("../images/ring-alt.gif");   
+  background-image: url("../images/ring-alt.gif");
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }

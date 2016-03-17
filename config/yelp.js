@@ -1,10 +1,12 @@
+require('dotenv').config()
+
 var Yelp = require('yelp');
 
 var yelp = new Yelp({
-  consumer_key:'D9ai2xpJSCmz7XKQshywGw',
-  consumer_secret:'F7ZxNHW-5ZmBAr2zuLGKhzLzgac',
-  token:'pfHDIBQ6BlcVVLSdFq8-qQwACrbvuCAl',
-  token_secret:'jn2V2FBCmzxUIo5fVpGyGPuecVQ'
+  consumer_key: process.env.YELP_KEY,
+  consumer_secret: process.env.YELP_SECRET,
+  token: process.env.YELP_TOKEN,
+  token_secret: process.env.YELP_SECRET_TOKEN
 })
 
 
