@@ -26,7 +26,10 @@
 }
 
 .searches{
+  position: absolute;
   z-index: 999;
+  margin-top: -30%;
+  padding-left: 7%;
 }
 
 /*SEARCH CALENDAR STYLING*/
@@ -194,6 +197,7 @@ body {
 
 header.carousel {
     height: 80%;
+    position:  relative;
     z-index: 0;
 }
 
