@@ -15,23 +15,23 @@ a:link, a:visited {
     color:#eee;
 }
 
-address{
+address {
   background-image: url("../images/ring-alt.gif");
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
 
-#event-container{
+#event-container {
   margin-top: 10px;
 }
 
-.thumbnail{
+.thumbnail {
   width:100%;
   white-space: pre-wrap;
   opacity: .8;
 }
 
-.thumbnail:hover{
+.thumbnail:hover {
   background-color: white;
   opacity: 1;
 }
@@ -40,7 +40,7 @@ address{
   text-shadow: 2px 2px black;
 }
 
-.fa-calendar-plus-o{
+.fa-calendar-plus-o {
   position: absolute;
   top: 5px;
   right: 25px;
@@ -54,7 +54,7 @@ address{
   color: #DECC0A;
 }
 
-.fa-calendar-check-o{
+.fa-calendar-check-o {
   color:green;
 }
 
@@ -80,17 +80,21 @@ address{
   color:black;
 }
 
-.thumbnail{
+.thumbnail {
   height: 300px;
   text-align: center;
 }
 
-.well{
+.well {
   text-align: center;
 }
 
-iframe{
+iframe {
   width:100%;
+}
+
+#date {
+  border-radius: 5px;
 }
 
 

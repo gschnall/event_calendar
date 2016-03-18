@@ -59,7 +59,7 @@ var eventRoutes = require('./routes/events.js')
 
 // TEMPORARY HOME ROUTE
 app.get('/', function(req, res){
-  res.render('index', {user: req.user, currentDate:moment().format()})
+  res.render('index', {user: req.user, currentDate:moment().format('MM/DD/YYYY')})
 })
 
 // User Routes
