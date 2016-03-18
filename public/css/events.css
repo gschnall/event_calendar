@@ -40,7 +40,7 @@ address{
   text-shadow: 2px 2px black;
 }
 
-.fa-calendar-plus-o:before{
+.fa-calendar-plus-o{
   position: absolute;
   top: 5px;
   right: 25px;
@@ -75,6 +75,9 @@ address{
   background-color: white;
   opacity: 0.6;
   border-radius: 10px;
+}
+.divBox {
+  color:black;
 }
 
 .thumbnail{

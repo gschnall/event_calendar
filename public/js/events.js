@@ -28,7 +28,7 @@ $(function(){
         var $soundPlayer = $('<iframe id="'+ data.performer  +  ' "class="players" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/76067623&amp;auto_play=false&amp;hide_related=true&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
 
         // Append html tags to div before populating page
-        $divThumbnail.append($icons)
+
         $divThumbnail.append($eventTitle)
         // If image exists append it to the div
         if(data.image){
@@ -58,6 +58,7 @@ $(function(){
         $divDetails.append($eventDescription)
         $divBox.append($divDetails)
 
+        $divDetails.append($icons)
         $divContainer.append($divThumbnail)
         $divContainer.append($divBox)
         //For each event in the array, append it to the event container to populate page with 5 results
@@ -70,7 +71,7 @@ $(function(){
       console.log(data)
       if(String(data)==[]){
         console.log(data)
-        var $noResult = $('<h1 id="no-results"><i class="fa fa-frown-o fa-3x"></i> No Results Found </h1>')
+        var $noResult = $('<h1 id="no-results"><i class="fa fa-frown-o fa-3x"></i> No Results Found.... I cannot belib dat</h1>')
         $('#event-container').append($noResult)
       }
     }
@@ -125,13 +126,17 @@ $(function(){
 // Adds event to user's calendar on click
   $('body').on('click', '.fa-calendar-plus-o', function(){
     var $calendarChecked = $(this)
+    var thumbNum = $calendarChecked.parent().parent().attr('id')
+    var $correctDiv = $('#thumb-'+ thumbNum)
+    var title = $correctDiv.text()
     var description = ($(this).parent().children('.description').text())
     var venue = ($(this).parent().children('.venue').text())
     var address = ($(this).parent().children('address'))
     var addressFrame = address[0].innerHTML
     var start = ($(this).parent().children('.start-time').text())
     var end = ($(this).parent().children('.end-time').text())
-    var title = ($(this).parent().children('.caption').text())
+    // var title = ($('.caption').text())
+
     var startArr = moment(start.replace('th', '').replace('st','').replace('rd', '').replace('nd', '')).format().split('-')
     var formatStart = startArr[0] + '-' + startArr[1] + '-' + startArr[2]
 
