@@ -15,6 +15,18 @@ a:link, a:visited {
     color:#eee;
 }
 
+.well{
+  border: 1px solid black;
+}
+
+#mainContainer{
+  background-color: black;
+  opacity: .74;
+  padding-bottom: 20px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
 address {
   background-image: url("../images/ring-alt.gif");
   background-repeat: no-repeat;
@@ -29,6 +41,7 @@ address {
   width:100%;
   white-space: pre-wrap;
   opacity: .8;
+  border: 1px solid black; 
 }
 
 .thumbnail:hover {
