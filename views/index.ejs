@@ -37,11 +37,14 @@
 <!-- DATE SEARCH -->
     <div class="col-md-4">
       <div class="input-group">
-        <input type="text" class="form-control datepicker" placeholder="Date (DD/MM/YYYY)" id="date" value= "01/01/2016" >
+        <div class="input-group-btn">
+        <input type="text" class="form-control datepicker" placeholder="Date (DD/MM/YYYY)" id="date" value= <%= currentDate %> >
+        </div>
       </div>
     </div>
+
 <!-- LOCATION SEARCH -->
-    <div class="col-md-4 ">
+    <div class="col-md-4" id="locationDiv">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="City" id="location">
         <span class="input-group-btn">
