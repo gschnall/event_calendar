@@ -10,7 +10,8 @@ var
   passport = require('passport')
   passportConfig = require('./config/passport.js')
   eventful = require('eventful-node'),
-  SC= require('node-soundcloud')
+  SC= require('node-soundcloud'),
+  moment = require('./public/js/lib/moment.min.js')
 
 
 // :: Setup Enviroment Variables ::
@@ -58,7 +59,7 @@ var eventRoutes = require('./routes/events.js')
 
 // TEMPORARY HOME ROUTE
 app.get('/', function(req, res){
-  res.render('index', {user: req.user})
+  res.render('index', {user: req.user, currentDate:moment().format()})
 })
 
 // User Routes
