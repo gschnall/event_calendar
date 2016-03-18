@@ -27,7 +27,7 @@ eventRouter.post('/search', function(req, res){
         // console.log(data.businesses[i].name)
         // console.log(userDate)
         var evtYelp = data.businesses[i]
-        yelpArr.push({image: evtYelp.image_url, venue: evtYelp.rating, title: evtYelp.name, address: evtYelp.location.address[0] + ' '+ evtYelp.location.city + ' ' +  evtYelp.location.state_code + ', ' + evtYelp.location.postal_code , description:evtYelp.snippet_text})
+        yelpArr.push({image: evtYelp.image_url, venue: 'Rating: ' + evtYelp.rating + ' <i class="fa fa-star"></i>', title: evtYelp.name, address: evtYelp.location.address[0] + ' '+ evtYelp.location.city + ' ' +  evtYelp.location.state_code + ', ' + evtYelp.location.postal_code , description:evtYelp.snippet_text})
       }
       res.json(query.shuffleArr(yelpArr))
     })
