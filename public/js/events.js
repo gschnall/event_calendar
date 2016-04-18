@@ -88,6 +88,9 @@ $(function(){
 
 // Click event for Search Events button -- populates page with three results
   $('#start-search').on('click', function(){
+    // LOADING GIF
+    var $this = $(this);
+    $this.button('loading');
     $.ajax({
       method:'POST',
       url:'/events/search',
@@ -107,6 +110,8 @@ $(function(){
         var embed ="<iframe width='425' height='350' frameborder='0' scrolling='no'  marginheight='0' marginwidth='0'   src='https://maps.google.com/maps?&amp;q="+ encodeURIComponent( $(this).text() ) +"&amp;output=embed'></iframe>";
         $(this).html(embed);
      });
+     // REMOVE LOADING GIF
+     $this.button('reset')
     })
   })
 
